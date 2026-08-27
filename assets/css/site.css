@@ -1,0 +1,51 @@
+:root {
+  --bg: #f7f5f0;
+  --ink: #181816;
+  --muted: #6d6a63;
+  --line: #d8d3c8;
+  --accent: #27384a;
+  --max: 1120px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+.shell { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+.site-header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px); background: rgba(247,245,240,.92); border-bottom: 1px solid rgba(0,0,0,.07); }
+.nav { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { font-family: Georgia, "Times New Roman", serif; font-size: 1.07rem; font-weight: 700; text-decoration: none; letter-spacing: .01em; }
+.nav-links { display: flex; gap: 24px; font-size: .9rem; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a:hover { color: var(--ink); }
+.hero { display: grid; grid-template-columns: 1.45fr .55fr; gap: 76px; padding: 90px 0 70px; border-bottom: 1px solid var(--line); }
+.eyebrow { margin: 0 0 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; font-weight: 700; }
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; margin-top: 0; }
+h1 { margin-bottom: 18px; font-size: clamp(3rem, 7vw, 5.8rem); line-height: .97; letter-spacing: -.045em; }
+.dek { max-width: 720px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.45; color: #35332f; }
+.hero-meta { align-self: end; padding-bottom: 8px; }
+.portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 34%; filter: grayscale(100%); display: block; margin-bottom: 24px; }
+.meta-block { font-size: .92rem; color: var(--muted); }
+.meta-block p { margin: 0 0 12px; }
+main section { display: grid; grid-template-columns: 220px 1fr; gap: 56px; padding: 68px 0; border-bottom: 1px solid var(--line); }
+.section-label h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .11em; margin-bottom: 8px; }
+.section-label p { color: var(--muted); font-size: .86rem; margin: 0; }
+.section-body { max-width: 760px; }
+.section-body > p:first-child { margin-top: 0; }
+.research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 34px; margin-top: 28px; }
+.research-item { padding-top: 14px; border-top: 1px solid var(--line); }
+.research-item strong { display: block; font-family: Georgia, "Times New Roman", serif; font-size: 1.05rem; }
+.research-item span { color: var(--muted); font-size: .9rem; }
+.entry { display: grid; grid-template-columns: 110px 1fr; gap: 24px; padding: 0 0 30px; margin-bottom: 30px; border-bottom: 1px solid #e5e0d7; }
+.entry:last-child { margin-bottom: 0; border-bottom: 0; padding-bottom: 0; }
+.entry-year { color: var(--muted); font-size: .88rem; padding-top: 4px; }
+.entry h3 { font-size: 1.18rem; line-height: 1.35; margin-bottom: 5px; }
+.entry p { margin: 0; color: #4d4a44; font-size: .94rem; }
+.entry .detail { margin-top: 8px; color: var(--muted); }
+.publication-title { font-style: italic; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 14px 24px; }
+.contact-row a { font-size: .93rem; }
+.site-footer { padding: 40px 0 58px; color: var(--muted); font-size: .84rem; display: flex; justify-content: space-between; gap: 20px; }
+@media (max-width: 820px) { .nav-links { display: none; } .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 60px; } .hero-meta { max-width: 320px; } main section { grid-template-columns: 1fr; gap: 26px; } .entry { grid-template-columns: 1fr; gap: 8px; } .research-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .shell { width: min(100% - 24px, var(--max)); } h1 { font-size: 3.2rem; } .hero { padding: 48px 0 52px; } main section { padding: 50px 0; } .site-footer { flex-direction: column; } }
+@media print { .site-header { display: none; } body { background: white; font-size: 10.5pt; } .shell { width: 100%; max-width: none; } .hero { padding: 20px 0 28px; grid-template-columns: 1.65fr .35fr; gap: 28px; } .portrait { max-height: 180px; } main section { padding: 26px 0; grid-template-columns: 150px 1fr; gap: 28px; break-inside: avoid; } h1 { font-size: 36pt; } .site-footer { padding: 22px 0 0; } a { text-decoration: none; } }
