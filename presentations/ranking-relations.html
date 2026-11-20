@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>Ranking Relations | Felipe Núñez-Michea</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
 <script>
 window.MathJax = {
@@ -24,24 +28,30 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 :root {
   --paper: #f4f1e9;
   --ink: #151719;
-  --muted: #6d7175;
-  --blue: #365d78;
+  --muted: #686c6f;
   --red: #b84a3c;
-  --line: rgba(21,23,25,.15);
+  --blue: #365d78;
+  --hair: rgba(21,23,25,.15);
+  --hair2: rgba(21,23,25,.08);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
+html,
+body {
   width: 100%;
   height: 100%;
+  margin: 0;
   overflow: hidden;
   background: #171819;
   color: var(--ink);
-  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  font-family: "EB Garamond", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .viewport {
@@ -49,6 +59,7 @@ html, body {
   inset: 0;
   display: grid;
   place-items: center;
+  background: #171819;
 }
 
 .stage {
@@ -57,35 +68,40 @@ html, body {
   top: 50%;
   width: 1920px;
   height: 1080px;
-  transform-origin: center;
+  transform-origin: center center;
   background: var(--paper);
   overflow: hidden;
-  box-shadow: 0 25px 90px rgba(0,0,0,.4);
+  box-shadow: 0 30px 100px rgba(0,0,0,.35);
 }
 
 .slide {
   position: absolute;
   inset: 0;
-  padding: 105px 130px 100px;
-
+  padding: 92px 115px 88px;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+  transition:
+    opacity .32s ease,
+    visibility .32s step-end;
 
   background:
-    linear-gradient(rgba(21,23,25,.025) 1px, transparent 1px),
-    linear-gradient(90deg,rgba(21,23,25,.025) 1px, transparent 1px),
+    linear-gradient(rgba(21,23,25,.024) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(21,23,25,.024) 1px, transparent 1px),
     var(--paper);
 
-  background-size: 120px 120px;
+  background-size:
+    120px 120px,
+    120px 120px,
+    auto;
 }
 
 .slide::before {
   content: "";
   position: absolute;
-  inset: 80px 86px;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  inset: 76px 82px;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
   pointer-events: none;
 }
 
@@ -93,180 +109,202 @@ html, body {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
+  transition: opacity .38s ease;
 }
 
 .content {
   position: relative;
   z-index: 2;
+  height: 100%;
 }
 
-h1, h2, h3, p {
+/* -------------------------
+   TYPOGRAPHY
+-------------------------- */
+
+h1,
+h2,
+h3,
+p {
   margin-top: 0;
 }
 
 h1 {
-  font-size: 90px;
-  line-height: .98;
-  letter-spacing: -.045em;
-  margin-bottom: 40px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 68px;
+  line-height: 1;
+  letter-spacing: -.025em;
+  font-weight: 600;
+  margin-bottom: 30px;
 }
 
 h2 {
-  font-size: 58px;
-  line-height: 1.05;
-  letter-spacing: -.025em;
-  margin-bottom: 55px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 43px;
+  line-height: 1.08;
+  letter-spacing: -.012em;
+  font-weight: 600;
+  margin-bottom: 34px;
+}
+
+h3 {
+  font-family: "EB Garamond", Georgia, serif;
+  font-weight: 600;
 }
 
 .subtitle {
-  font-family: Georgia, serif;
-  font-size: 42px;
+  font-size: 34px;
   line-height: 1.25;
-  max-width: 1100px;
+  max-width: 1080px;
 }
 
 .author {
-  margin-top: 70px;
-  font-size: 29px;
+  margin-top: 48px;
+  font-size: 25px;
   color: var(--muted);
 }
 
 .body {
-  font-size: 31px;
-  line-height: 1.48;
-  max-width: 1500px;
+  font-size: 27px;
+  line-height: 1.37;
+  max-width: 1510px;
 }
 
 .body p {
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+}
+
+.body ul,
+.body ol {
+  margin-top: 12px;
+  margin-bottom: 18px;
 }
 
 .body li {
-  margin-bottom: 17px;
+  margin-bottom: 8px;
 }
 
 .large {
-  font-size: 43px;
-  line-height: 1.4;
-  max-width: 1450px;
+  font-size: 33px;
+  line-height: 1.34;
+  max-width: 1420px;
 }
 
 .small {
-  font-size: 24px;
+  font-size: 19px;
+  line-height: 1.3;
   color: var(--muted);
 }
 
+.formula {
+  font-size: 28px;
+  line-height: 1.22;
+  margin: 10px 0 15px;
+}
+
 em {
-  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+strong {
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+}
+
+.slide-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding-bottom: 2px;
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(54,93,120,.45);
+  font-size: 22px;
+}
+
+.slide-link:hover {
+  border-color: var(--blue);
 }
 
 .accent {
-  border-left: 5px solid var(--blue);
-  padding-left: 30px;
+  border-left: 4px solid var(--blue);
+  padding-left: 25px;
 }
 
-.claim {
-  border-top: 2px solid var(--ink);
-  padding-top: 23px;
+.muted {
+  color: var(--muted);
 }
 
-.formula {
-  font-family: Georgia, serif;
-  font-size: 40px;
+/* -------------------------
+   TITLE SLIDE
+-------------------------- */
+
+.title-slide {
+  display: flex;
+  align-items: center;
+}
+
+.title-slide .content {
+  height: auto;
+  width: 100%;
+}
+
+.title-line {
+  width: 92px;
+  height: 4px;
+  background: var(--red);
+  margin-bottom: 31px;
+}
+
+/* -------------------------
+   BASIC LAYOUTS
+-------------------------- */
+
+.center {
+  display: flex;
+  align-items: center;
 }
 
 .two-column {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 85px;
+  grid-template-columns: .92fr 1.08fr;
+  gap: 68px;
   align-items: center;
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
-}
-
-.card {
-  border-top: 2px solid var(--ink);
-  padding: 25px 10px 20px 0;
-}
-
-.card:nth-child(even) {
-  border-color: var(--blue);
-}
-
-.card h3 {
-  font-size: 31px;
-  margin-bottom: 14px;
-}
-
-.card p {
-  font-size: 27px;
-  line-height: 1.45;
-}
-
-/* vessels */
-
-.vessels {
-  height: 560px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 55px;
-}
-
-.vessel {
-  position: relative;
-  width: 180px;
-  height: 430px;
-  border: 4px solid var(--ink);
-  border-top: none;
-}
-
-.water {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(54,93,120,.45);
-}
-
-.low {
-  height: 32%;
-}
-
-.high {
-  height: 86%;
-}
-
-.vessel-label {
-  position: absolute;
+.connected-vessels {
+  display: block;
   width: 100%;
-  text-align: center;
-  bottom: -55px;
-  font-size: 24px;
+  max-width: 720px;
+  max-height: 560px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
-/* table */
+/* -------------------------
+   TABLES / CARDS
+-------------------------- */
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 35px;
-  font-size: 27px;
+  margin-top: 19px;
+  font-size: 22px;
+  line-height: 1.25;
 }
 
 th {
   text-align: left;
-  border-bottom: 2px solid var(--ink);
-  padding: 14px 15px;
+  border-bottom: 1.5px solid var(--ink);
+  padding: 9px 12px;
+  font-weight: 600;
 }
 
 td {
-  border-bottom: 1px solid var(--line);
-  padding: 18px 15px;
+  border-bottom: 1px solid var(--hair);
+  padding: 11px 12px;
 }
 
 .highlight {
@@ -274,47 +312,199 @@ td {
   font-weight: 600;
 }
 
-/* title */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 28px;
+  margin-top: 24px;
+}
 
-.title-slide {
+.card {
+  border-top: 1.5px solid var(--ink);
+  padding-top: 15px;
+}
+
+.card:nth-child(2) {
+  border-color: var(--blue);
+}
+
+.card:nth-child(3) {
+  border-color: var(--red);
+}
+
+.card h3 {
+  font-size: 24px;
+  margin-bottom: 7px;
+}
+
+.card p {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+/* -------------------------
+   LORENZ APPENDIX
+-------------------------- */
+
+.lorenz-slide .content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.lorenz-header {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: start;
+  gap: 40px;
 }
 
-.title-line {
-  width: 110px;
-  height: 5px;
-  background: var(--red);
-  margin-bottom: 40px;
+.back-link {
+  font-size: 21px;
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(54,93,120,.4);
+  margin-top: 8px;
 }
 
-/* end */
+.lorenz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  min-height: 0;
+}
 
-.end {
+.lorenz-example {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 0;
+  border-top: 1.5px solid var(--ink);
+  padding-top: 14px;
+}
+
+.lorenz-example:nth-child(2) {
+  border-color: var(--blue);
+}
+
+.lorenz-example h3 {
+  font-size: 25px;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.lorenz-example .description {
+  font-size: 19px;
+  line-height: 1.28;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+
+.lorenz-graph {
+  width: 100%;
+  height: 100%;
+  max-height: 435px;
+  overflow: visible;
+}
+
+.graph-axis {
+  stroke: rgba(21,23,25,.78);
+  stroke-width: 2;
+}
+
+.graph-grid {
+  stroke: rgba(21,23,25,.09);
+  stroke-width: 1;
+}
+
+.graph-equality {
+  stroke: rgba(21,23,25,.45);
+  stroke-width: 2;
+  stroke-dasharray: 8 9;
+  fill: none;
+}
+
+.graph-a {
+  stroke: var(--blue);
+  stroke-width: 5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.graph-b {
+  stroke: var(--red);
+  stroke-width: 5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.graph-single {
+  stroke: var(--red);
+  stroke-width: 5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.graph-point {
+  fill: var(--ink);
+}
+
+.graph-point-red {
+  fill: var(--red);
+}
+
+.graph-label {
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 19px;
+  fill: rgba(21,23,25,.70);
+}
+
+.graph-small {
+  font-size: 17px;
+}
+
+.lorenz-note {
+  font-size: 19px;
+  line-height: 1.27;
+  margin-top: 4px;
+}
+
+/* -------------------------
+   END
+-------------------------- */
+
+.end-slide {
   display: grid;
   place-items: center;
   text-align: center;
 }
 
-.end h1 {
-  font-size: 100px;
+.end-slide h1 {
+  font-size: 70px;
 }
 
-.end a {
-  color: inherit;
+.end-slide .large {
+  font-size: 29px;
+}
+
+.end-slide a {
   text-decoration: none;
-  border-bottom: 2px solid var(--blue);
+  border-bottom: 1px solid var(--blue);
 }
 
-/* navigation */
+/* -------------------------
+   CHROME
+-------------------------- */
 
 .counter {
   position: absolute;
-  right: 108px;
-  bottom: 46px;
-  font-family: monospace;
-  font-size: 20px;
-  color: var(--muted);
+  right: 102px;
+  bottom: 43px;
+  font-family: "EB Garamond", Georgia, serif;
+  font-size: 18px;
+  letter-spacing: .06em;
+  color: rgba(21,23,25,.5);
   z-index: 10;
 }
 
@@ -322,38 +512,56 @@ td {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 4px;
+  height: 3px;
   background: var(--red);
+  width: 0;
+  transition: width .25s ease;
   z-index: 10;
 }
 
 .hint {
   position: absolute;
-  left: 105px;
-  bottom: 43px;
+  left: 102px;
+  bottom: 42px;
   font-size: 17px;
-  color: var(--muted);
+  color: rgba(21,23,25,.45);
   z-index: 10;
 }
 
-/* animation */
+/* -------------------------
+   ANIMATION
+-------------------------- */
 
 .slide.active .reveal {
-  animation: rise .5s ease both;
+  animation: rise .48s cubic-bezier(.2,.72,.2,1) both;
 }
 
-.slide.active .delay {
-  animation-delay: .12s;
+.slide.active .d2 {
+  animation-delay: .08s;
+}
+
+.slide.active .d3 {
+  animation-delay: .16s;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(12px);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
   }
 }
 
@@ -366,9 +574,12 @@ td {
 
 <main class="stage" id="stage">
 
-<!-- 1 -->
+<!-- =====================================================
+     1. TITLE
+===================================================== -->
 
-<section class="slide title-slide">
+<section class="slide title-slide" data-anchor="title">
+
   <div class="content reveal">
 
     <div class="title-line"></div>
@@ -385,30 +596,40 @@ td {
     </div>
 
   </div>
+
 </section>
 
 
-<!-- 2 -->
+<!-- =====================================================
+     2. PROPOSAL
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="proposal">
+
   <div class="content">
 
     <h2 class="reveal">
       Can RE have a teleological structure?
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p class="large">
         A teleological structure permits at least a partial ranking
         of outcomes according to a betterness relation.
       </p>
 
-      <p>I adopt an interpretation of relational egalitarianism (RE) as:</p>
+      <p>
+        I adopt an interpretation of relational egalitarianism (RE) as:
+      </p>
 
       <ol>
         <li>a theory of justice,</li>
-        <li>concerned with the obligations of social and political institutions,</li>
+
+        <li>
+          concerned with the obligations of social and political institutions,
+        </li>
+
         <li>
           directed at equal civic status in democratic relations free of
           domination and marginalization.
@@ -422,13 +643,17 @@ td {
       </p>
 
     </div>
+
   </div>
+
 </section>
 
 
-<!-- 3 -->
+<!-- =====================================================
+     3. CIVIC STATUS
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="civic-status">
 
   <div class="content">
 
@@ -436,11 +661,10 @@ td {
       Civic status: relativities matter
     </h2>
 
-    <div class="large reveal delay">
+    <div class="large reveal d2">
 
-      How citizens stand relative to one another,
-      including the absence of hierarchies of domination
-      and marginalization.
+      How citizens stand relative to one another, including the absence of
+      hierarchies of domination and marginalization.
 
     </div>
 
@@ -449,9 +673,11 @@ td {
 </section>
 
 
-<!-- 4 -->
+<!-- =====================================================
+     4. DYSTOPIAN EGALITARIAN SOCIETY
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="dystopia">
 
   <div class="content">
 
@@ -459,32 +685,31 @@ td {
       The dystopian egalitarian society
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p>
         <em>Dystopian egalitarian society:</em>
         (1) In a similar vein to Schelling's segregation model (1971),
-        different groups of society have mild in-group preferences
-        to be close to their own group, ending up, spontaneously,
-        in a segregated society in a finite amount of time.
+        different groups of society have mild in-group preferences to be
+        close to their own group, ending up, spontaneously, in a segregated
+        society in a finite amount of time.
       </p>
 
       <p>
         (2) At least some think of others as mere instruments.
-        The state does nothing to prevent these in-group preferences
-        and dehumanizing beliefs; nevertheless, it secures
-        non-hierarchical relations.
-      </p>
-
-      <p class="accent">
-        Even without domination or marginalization,
-        the quality of civic relations gives RE a reason to object.
+        The state does nothing to prevent these in-group preferences and
+        dehumanizing beliefs; nevertheless, it secures non-hierarchical
+        relations.
       </p>
 
       <p>
+        Even without domination or marginalization, the quality of civic
+        relations gives RE a reason to object.
+      </p>
+
+      <p class="accent">
         <strong>The proposed response:</strong>
-        civic status has an absolute dimension
-        as well as a comparative one.
+        civic status has an absolute dimension as well as a comparative one.
       </p>
 
     </div>
@@ -494,9 +719,11 @@ td {
 </section>
 
 
-<!-- 5 -->
+<!-- =====================================================
+     5. COMPARATIVE / ABSOLUTE DIMENSIONS
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="dimensions">
 
   <div class="content">
 
@@ -506,21 +733,16 @@ td {
 
     <div class="two-column">
 
-      <div class="vessels reveal">
+      <div class="reveal">
 
-        <div class="vessel">
-          <div class="water low"></div>
-          <div class="vessel-label">Low provision</div>
-        </div>
-
-        <div class="vessel">
-          <div class="water high"></div>
-          <div class="vessel-label">High provision</div>
-        </div>
+        <img
+          src="assets/connected-vessels.png"
+          alt="Connected vessels illustrating comparative and absolute dimensions of civic status"
+          class="connected-vessels">
 
       </div>
 
-      <div class="body reveal delay">
+      <div class="body reveal d2">
 
         <p>
           Relative levels express a comparative relation.
@@ -535,7 +757,7 @@ td {
           Comparative equality alone leaves the absolute level open.
         </p>
 
-        <p class="accent">
+        <p>
           Absolute equality is about the quality of a relation.
         </p>
 
@@ -548,9 +770,11 @@ td {
 </section>
 
 
-<!-- 6 -->
+<!-- =====================================================
+     6. CIVIC CLAIMS
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="claims">
 
   <div class="content">
 
@@ -558,11 +782,10 @@ td {
       Civic equality as a system of claims
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p class="large">
-        Citizens have claims against public institutions
-        to equal civic status.
+        Citizens have claims against public institutions to equal civic status.
       </p>
 
       <p>
@@ -571,16 +794,23 @@ td {
         Institutional provision determines its degree of satisfaction.
       </p>
 
-      <p>This separates two evaluative concerns:</p>
+      <p>
+        This separates two evaluative concerns:
+      </p>
 
       <ul>
-        <li>satisfying claims to as large an extent as possible,</li>
-        <li>providing treatment in proportion to claim strengths.</li>
+        <li>
+          satisfying claims to as large an extent as possible,
+        </li>
+
+        <li>
+          providing treatment in proportion to claim strengths.
+        </li>
       </ul>
 
       <p class="accent">
-        The same representation can support different rules
-        for resolving conflicts between these concerns.
+        The same representation can support different rules for resolving
+        conflicts between these concerns.
       </p>
 
       <p class="small">
@@ -594,9 +824,11 @@ td {
 </section>
 
 
-<!-- 7 -->
+<!-- =====================================================
+     7. SAT / MAT
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="satisfaction">
 
   <div class="content">
 
@@ -604,7 +836,7 @@ td {
       Claims and their satisfaction
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p>
         For one status-conferring good, let citizens be
@@ -613,15 +845,15 @@ td {
 
       <div class="formula">
 
-      \[
-      C_i=(a,\sigma_i),
-      \qquad
-      a>0,
-      \quad
-      \sigma_i>0,
-      \quad
-      \sum_i\sigma_i=1.
-      \]
+        \[
+        C_i=(a,\sigma_i),
+        \qquad
+        a>0,
+        \quad
+        \sigma_i>0,
+        \quad
+        \sum_i\sigma_i=1.
+        \]
 
       </div>
 
@@ -637,13 +869,15 @@ td {
 
       <div class="formula">
 
-      \[
-      \operatorname{Sat}_i(x_i)
-      =
-      \min\left\{1,\frac{x_i}{a}\right\},
-      \qquad
-      \operatorname{Mat}_i(x_i)=\frac{x_i}{a}.
-      \]
+        \[
+        \operatorname{Sat}_i(x_i)
+        =
+        \min\left\{1,\frac{x_i}{a}\right\},
+        \qquad
+        \operatorname{Mat}_i(x_i)
+        =
+        \frac{x_i}{a}.
+        \]
 
       </div>
 
@@ -659,9 +893,11 @@ td {
 </section>
 
 
-<!-- 8 -->
+<!-- =====================================================
+     8. PROPORTIONALITY
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="proportionality">
 
   <div class="content">
 
@@ -669,7 +905,7 @@ td {
       Proportionality and comparative inequality
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p>
         Strength-adjusted mathematical satisfaction is:
@@ -677,13 +913,13 @@ td {
 
       <div class="formula">
 
-      \[
-      r_i(x)
-      =
-      \frac{\operatorname{Mat}_i(x_i)}{\sigma_i}
-      =
-      \frac{x_i}{a\sigma_i}.
-      \]
+        \[
+        r_i(x)
+        =
+        \frac{\operatorname{Mat}_i(x_i)}{\sigma_i}
+        =
+        \frac{x_i}{a\sigma_i}.
+        \]
 
       </div>
 
@@ -695,29 +931,35 @@ td {
       <p>
         Sort these values as
         \(r_{(1)}\le\cdots\le r_{(n)}\).
-        For positive total provision, define:
+        For positive total provision:
       </p>
 
       <div class="formula">
 
-      \[
-      L_x^M\left(\frac{m}{n}\right)
-      =
-      \frac{
-        \sum_{i=1}^{m}r_{(i)}
-      }{
-        \sum_{i=1}^{n}r_{(i)}
-      },
-      \qquad
-      m=0,\ldots,n.
-      \]
+        \[
+        L_x^M\left(\frac{m}{n}\right)
+        =
+        \frac{
+          \sum_{i=1}^{m}r_{(i)}
+        }{
+          \sum_{i=1}^{n}r_{(i)}
+        },
+        \qquad
+        m=0,\ldots,n.
+        \]
 
       </div>
 
-      <p class="accent">
-        A higher Lorenz curve means less comparative inequality
-        when the curves are ordered by dominance.
+      <p>
+        A higher Lorenz curve means less comparative inequality when
+        the curves are ordered by dominance.
       </p>
+
+      <a
+        class="slide-link"
+        href="#lorenz-examples">
+        Lorenz curve examples →
+      </a>
 
     </div>
 
@@ -726,9 +968,11 @@ td {
 </section>
 
 
-<!-- 9 -->
+<!-- =====================================================
+     9. EQUAL CLAIMS EXAMPLE
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="equal-claims">
 
   <div class="content">
 
@@ -736,7 +980,7 @@ td {
       Equal claims: absolute and comparative differences
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p>
         Take \(a=1\) and
@@ -783,9 +1027,8 @@ td {
 
       </table>
 
-      <p style="margin-top:35px">
-        Equal comparative profiles can coexist with different
-        absolute levels.
+      <p style="margin-top:22px">
+        Equal comparative profiles can coexist with different absolute levels.
       </p>
 
       <p class="accent">
@@ -799,9 +1042,11 @@ td {
 </section>
 
 
-<!-- 10 -->
+<!-- =====================================================
+     10. REPRESENTATION AND RANKING
+===================================================== -->
 
-<section class="slide">
+<section class="slide center" data-anchor="ranking">
 
   <div class="content">
 
@@ -809,7 +1054,7 @@ td {
       Outcome representation and partial ranking
     </h2>
 
-    <div class="body reveal delay">
+    <div class="body reveal d2">
 
       <p>
         Represent each outcome by:
@@ -817,14 +1062,14 @@ td {
 
       <div class="formula">
 
-      \[
-      \mathcal R(x)
-      =
-      \bigl(
-      \operatorname{Sat}(x),
-      L_x^M
-      \bigr).
-      \]
+        \[
+        \mathcal R(x)
+        =
+        \bigl(
+        \operatorname{Sat}(x),
+        L_x^M
+        \bigr).
+        \]
 
       </div>
 
@@ -834,43 +1079,60 @@ td {
 
       <div class="formula">
 
-      \[
-      \operatorname{Sat}_i(x_i)
-      \ge
-      \operatorname{Sat}_i(y_i)
-      \quad\text{for every }i,
-      \]
+        \[
+        \operatorname{Sat}_i(x_i)
+        \ge
+        \operatorname{Sat}_i(y_i)
+        \quad
+        \text{for every }i,
+        \]
 
-      \[
-      L_x^M(p)\ge L_y^M(p)
-      \quad\text{for every }p,
-      \]
+        \[
+        L_x^M(p)
+        \ge
+        L_y^M(p)
+        \quad
+        \text{for every }p,
+        \]
 
       </div>
 
       <p>
-        with a strict inequality for at least one citizen
+        with strict inequality for at least one citizen
         or one Lorenz point.
       </p>
 
       <div class="card-grid">
 
         <div class="card">
+
           <h3>Absolute-first</h3>
-          <p>Prioritize claim satisfaction.</p>
+
+          <p>
+            Prioritize claim satisfaction.
+          </p>
+
         </div>
 
         <div class="card">
+
           <h3>Comparative-first</h3>
-          <p>Prioritize proportionality.</p>
+
+          <p>
+            Prioritize proportionality.
+          </p>
+
         </div>
 
         <div class="card">
+
           <h3>Continuous aggregation</h3>
+
           <p>
             Specify trade-offs between the absolute
             and comparative dimensions.
           </p>
+
         </div>
 
       </div>
@@ -882,18 +1144,22 @@ td {
 </section>
 
 
-<!-- 11 -->
+<!-- =====================================================
+     11. END
+===================================================== -->
 
-<section class="slide end">
+<section class="slide end-slide" data-anchor="end">
 
   <div class="content reveal">
 
     <h1>Thank you</h1>
 
     <div class="large">
+
       <a href="mailto:fanunezmichea@gmail.com">
         fanunezmichea@gmail.com
       </a>
+
     </div>
 
   </div>
@@ -901,12 +1167,284 @@ td {
 </section>
 
 
+<!-- =====================================================
+     APPENDIX: LORENZ EXAMPLES
+===================================================== -->
+
+<section
+  class="slide lorenz-slide"
+  data-anchor="lorenz-examples">
+
+  <div class="content">
+
+    <div class="lorenz-header reveal">
+
+      <div>
+
+        <h2>
+          Reading the Lorenz curve
+        </h2>
+
+      </div>
+
+      <a
+        class="back-link"
+        href="#proportionality">
+        ← Back
+      </a>
+
+    </div>
+
+
+    <div class="lorenz-grid reveal d2">
+
+      <!-- ------------------------------
+           EXAMPLE 1
+      ------------------------------- -->
+
+      <div class="lorenz-example">
+
+        <h3>
+          1. Lorenz dominance
+        </h3>
+
+        <div class="description">
+
+          Same total:
+          \(A=(2,4,6,8)\),
+          \(B=(1,3,5,11)\).
+
+        </div>
+
+
+        <svg
+          class="lorenz-graph"
+          viewBox="0 0 650 500"
+          aria-label="Lorenz curves comparing allocations A and B">
+
+          <!-- grid -->
+
+          <line class="graph-grid" x1="90" y1="390" x2="570" y2="390"/>
+          <line class="graph-grid" x1="90" y1="270" x2="570" y2="270"/>
+          <line class="graph-grid" x1="90" y1="150" x2="570" y2="150"/>
+
+          <line class="graph-grid" x1="210" y1="30" x2="210" y2="390"/>
+          <line class="graph-grid" x1="330" y1="30" x2="330" y2="390"/>
+          <line class="graph-grid" x1="450" y1="30" x2="450" y2="390"/>
+
+          <!-- axes -->
+
+          <line class="graph-axis" x1="90" y1="390" x2="580" y2="390"/>
+          <line class="graph-axis" x1="90" y1="400" x2="90" y2="24"/>
+
+          <!-- equality -->
+
+          <path
+            class="graph-equality"
+            d="M90 390 L570 30"/>
+
+          <!-- A:
+               cumulative shares
+               0,.10,.30,.60,1
+          -->
+
+          <path
+            class="graph-a"
+            d="
+              M90 390
+              L210 354
+              L330 282
+              L450 174
+              L570 30
+            "/>
+
+          <!-- B:
+               cumulative shares
+               0,.05,.20,.45,1
+          -->
+
+          <path
+            class="graph-b"
+            d="
+              M90 390
+              L210 372
+              L330 318
+              L450 228
+              L570 30
+            "/>
+
+          <!-- labels -->
+
+          <text class="graph-label" x="578" y="405">1</text>
+          <text class="graph-label" x="72" y="37">1</text>
+
+          <text class="graph-label graph-small" x="200" y="420">.25</text>
+          <text class="graph-label graph-small" x="319" y="420">.50</text>
+          <text class="graph-label graph-small" x="439" y="420">.75</text>
+
+          <text class="graph-label graph-small" x="42" y="278">.33</text>
+          <text class="graph-label graph-small" x="42" y="158">.67</text>
+
+          <text class="graph-label" x="470" y="145">A</text>
+          <text class="graph-label" x="470" y="220">B</text>
+
+          <text class="graph-label graph-small" x="278" y="468">
+            population share
+          </text>
+
+          <text
+            class="graph-label graph-small"
+            transform="translate(20,310) rotate(-90)">
+            cumulative share
+          </text>
+
+        </svg>
+
+
+        <div class="lorenz-note">
+
+          \(A\)'s curve lies everywhere weakly above \(B\)'s
+          and strictly above it somewhere.
+          Therefore \(A\) Lorenz-dominates \(B\).
+
+        </div>
+
+      </div>
+
+
+      <!-- ------------------------------
+           EXAMPLE 2
+      ------------------------------- -->
+
+      <div class="lorenz-example">
+
+        <h3>
+          2. Why use uncapped satisfaction?
+        </h3>
+
+        <div class="description">
+
+          Equal strengths:
+          \(\sigma_1=\sigma_2=1/2\),
+          with \(x=(a,3a)\).
+
+        </div>
+
+
+        <svg
+          class="lorenz-graph"
+          viewBox="0 0 650 500"
+          aria-label="Lorenz curve for allocation a and 3a">
+
+          <!-- grid -->
+
+          <line class="graph-grid" x1="90" y1="390" x2="570" y2="390"/>
+          <line class="graph-grid" x1="90" y1="210" x2="570" y2="210"/>
+
+          <line class="graph-grid" x1="330" y1="30" x2="330" y2="390"/>
+
+          <!-- axes -->
+
+          <line class="graph-axis" x1="90" y1="390" x2="580" y2="390"/>
+          <line class="graph-axis" x1="90" y1="400" x2="90" y2="24"/>
+
+          <!-- equality -->
+
+          <path
+            class="graph-equality"
+            d="M90 390 L570 30"/>
+
+          <!-- r = (2,6)
+               bottom-half share = 2/8 = .25
+          -->
+
+          <path
+            class="graph-single"
+            d="
+              M90 390
+              L330 300
+              L570 30
+            "/>
+
+          <circle
+            class="graph-point-red"
+            cx="330"
+            cy="300"
+            r="7"/>
+
+          <!-- labels -->
+
+          <text class="graph-label" x="578" y="405">1</text>
+          <text class="graph-label" x="72" y="37">1</text>
+
+          <text class="graph-label graph-small" x="319" y="420">.50</text>
+
+          <text class="graph-label graph-small" x="46" y="307">.25</text>
+
+          <text class="graph-label" x="350" y="289">
+            (.5, .25)
+          </text>
+
+          <text class="graph-label graph-small" x="278" y="468">
+            population share
+          </text>
+
+          <text
+            class="graph-label graph-small"
+            transform="translate(20,310) rotate(-90)">
+            cumulative share
+          </text>
+
+        </svg>
+
+
+        <div class="lorenz-note">
+
+          Capped satisfaction gives
+
+          \[
+          \operatorname{Sat}(x)=(1,1),
+          \]
+
+          but
+
+          \[
+          \operatorname{Mat}(x)=(1,3),
+          \qquad
+          r=(2,6).
+          \]
+
+          Full claim satisfaction therefore does not imply
+          comparative equality.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
 <div class="hint">
   ← → navigate · F fullscreen
 </div>
 
-<div class="counter" id="counter"></div>
-<div class="progress" id="progress"></div>
+<div
+  class="counter"
+  id="counter">
+</div>
+
+<div
+  class="progress"
+  id="progress">
+</div>
 
 </main>
 
@@ -915,112 +1453,328 @@ td {
 
 <script>
 
-const stage = document.getElementById("stage");
-const slides = [...document.querySelectorAll(".slide")];
-const counter = document.getElementById("counter");
-const progress = document.getElementById("progress");
+const stage =
+  document.getElementById("stage");
+
+const slides =
+  [...document.querySelectorAll(".slide")];
+
+const counter =
+  document.getElementById("counter");
+
+const progress =
+  document.getElementById("progress");
 
 let current = 0;
 
+
+/* -------------------------
+   FIT PRESENTATION
+-------------------------- */
+
 function fit() {
-  const scale = Math.min(
-    window.innerWidth / 1920,
-    window.innerHeight / 1080
-  );
+
+  const scale =
+    Math.min(
+      window.innerWidth / 1920,
+      window.innerHeight / 1080
+    );
 
   stage.style.transform =
     `translate(-50%, -50%) scale(${scale})`;
+
 }
 
-function go(n) {
 
-  current = Math.max(
-    0,
-    Math.min(slides.length - 1, n)
+/* -------------------------
+   SLIDE INDEX
+-------------------------- */
+
+function anchorIndex(anchor) {
+
+  return slides.findIndex(
+    slide =>
+      slide.dataset.anchor === anchor
   );
 
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === current);
-  });
+}
 
-  counter.textContent =
-    String(current + 1).padStart(2,"0") +
-    " / " +
-    String(slides.length).padStart(2,"0");
+
+/* -------------------------
+   GO TO SLIDE
+-------------------------- */
+
+function go(n, updateHash = true) {
+
+  current =
+    Math.max(
+      0,
+      Math.min(
+        slides.length - 1,
+        n
+      )
+    );
+
+  slides.forEach(
+    (slide, i) => {
+
+      slide.classList.toggle(
+        "active",
+        i === current
+      );
+
+    }
+  );
+
+  /*
+    Appendix slide is not counted as part
+    of the main argument.
+  */
+
+  const mainSlides =
+    slides.filter(
+      slide =>
+        slide.dataset.anchor !== "lorenz-examples"
+    );
+
+  const activeSlide =
+    slides[current];
+
+  if (
+    activeSlide.dataset.anchor ===
+    "lorenz-examples"
+  ) {
+
+    counter.textContent =
+      "APPENDIX";
+
+  }
+
+  else {
+
+    const mainIndex =
+      mainSlides.indexOf(
+        activeSlide
+      );
+
+    counter.textContent =
+      String(mainIndex + 1).padStart(2,"0")
+      +
+      " / "
+      +
+      String(mainSlides.length).padStart(2,"0");
+
+  }
+
 
   progress.style.width =
-    ((current + 1) / slides.length * 100) + "%";
+    (
+      (current + 1) /
+      slides.length *
+      100
+    )
+    +
+    "%";
 
-  history.replaceState(
-    null,
-    "",
-    "#" + (current + 1)
-  );
+
+  if (updateHash) {
+
+    const anchor =
+      slides[current].dataset.anchor;
+
+    history.replaceState(
+      null,
+      "",
+      "#" + anchor
+    );
+
+  }
+
 }
+
+
+/* -------------------------
+   HASH NAVIGATION
+-------------------------- */
 
 function fromHash() {
 
-  const n = parseInt(
-    location.hash.substring(1),
-    10
-  );
+  const hash =
+    decodeURIComponent(
+      location.hash.slice(1)
+    );
 
-  go(
-    Number.isFinite(n)
-      ? n - 1
-      : 0
-  );
-}
+  if (!hash) {
 
-window.addEventListener("resize", fit);
-window.addEventListener("hashchange", fromHash);
+    go(0, false);
+    return;
 
-document.addEventListener("keydown", e => {
+  }
+
+  const named =
+    anchorIndex(hash);
+
+  if (named >= 0) {
+
+    go(named, false);
+    return;
+
+  }
+
+  /*
+    Numeric hashes also continue to work.
+  */
+
+  const numeric =
+    parseInt(hash, 10);
 
   if (
-    e.key === "ArrowRight" ||
-    e.key === "PageDown" ||
-    e.key === " "
+    Number.isFinite(numeric)
   ) {
-    e.preventDefault();
-    go(current + 1);
+
+    go(
+      numeric - 1,
+      false
+    );
+
   }
 
-  else if (
-    e.key === "ArrowLeft" ||
-    e.key === "PageUp"
-  ) {
-    e.preventDefault();
-    go(current - 1);
+  else {
+
+    go(
+      0,
+      false
+    );
+
   }
 
-  else if (e.key === "Home") {
-    go(0);
+}
+
+
+/* -------------------------
+   EVENTS
+-------------------------- */
+
+window.addEventListener(
+  "resize",
+  fit
+);
+
+window.addEventListener(
+  "hashchange",
+  fromHash
+);
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "ArrowRight" ||
+      event.key === "PageDown" ||
+      event.key === " "
+    ) {
+
+      event.preventDefault();
+
+      go(
+        current + 1
+      );
+
+    }
+
+    else if (
+      event.key === "ArrowLeft" ||
+      event.key === "PageUp"
+    ) {
+
+      event.preventDefault();
+
+      go(
+        current - 1
+      );
+
+    }
+
+    else if (
+      event.key === "Home"
+    ) {
+
+      go(0);
+
+    }
+
+    else if (
+      event.key === "End"
+    ) {
+
+      go(
+        slides.length - 1
+      );
+
+    }
+
+    else if (
+      event.key.toLowerCase() === "f"
+    ) {
+
+      document
+        .documentElement
+        .requestFullscreen?.();
+
+    }
+
   }
+);
 
-  else if (e.key === "End") {
-    go(slides.length - 1);
+
+/*
+  Clicking the right or left side
+  of the presentation also navigates.
+
+  Links remain clickable.
+*/
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if (
+      event.target.closest("a")
+    ) {
+      return;
+    }
+
+    if (
+      event.clientX >
+      window.innerWidth * .58
+    ) {
+
+      go(
+        current + 1
+      );
+
+    }
+
+    else if (
+      event.clientX <
+      window.innerWidth * .42
+    ) {
+
+      go(
+        current - 1
+      );
+
+    }
+
   }
+);
 
-  else if (e.key.toLowerCase() === "f") {
-    document.documentElement.requestFullscreen?.();
-  }
 
-});
-
-document.addEventListener("click", e => {
-
-  if (e.target.closest("a")) return;
-
-  if (e.clientX > window.innerWidth * .55) {
-    go(current + 1);
-  }
-
-  else if (e.clientX < window.innerWidth * .45) {
-    go(current - 1);
-  }
-
-});
+/* -------------------------
+   INITIALISE
+-------------------------- */
 
 fit();
 fromHash();
