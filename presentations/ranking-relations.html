@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ranking Relations | Felipe Núñez-Michea</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  }
+};
+</script>
+
+<script async
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+<style>
+
+:root {
+  --paper: #f4f1e9;
+  --ink: #151719;
+  --muted: #6d7175;
+  --blue: #365d78;
+  --red: #b84a3c;
+  --line: rgba(21,23,25,.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #171819;
+  color: var(--ink);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.viewport {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: center;
+  background: var(--paper);
+  overflow: hidden;
+  box-shadow: 0 25px 90px rgba(0,0,0,.4);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  padding: 105px 130px 100px;
+
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(rgba(21,23,25,.025) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(21,23,25,.025) 1px, transparent 1px),
+    var(--paper);
+
+  background-size: 120px 120px;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 80px 86px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  pointer-events: none;
+}
+
+.slide.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 90px;
+  line-height: .98;
+  letter-spacing: -.045em;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 58px;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  margin-bottom: 55px;
+}
+
+.subtitle {
+  font-family: Georgia, serif;
+  font-size: 42px;
+  line-height: 1.25;
+  max-width: 1100px;
+}
+
+.author {
+  margin-top: 70px;
+  font-size: 29px;
+  color: var(--muted);
+}
+
+.body {
+  font-size: 31px;
+  line-height: 1.48;
+  max-width: 1500px;
+}
+
+.body p {
+  margin-bottom: 28px;
+}
+
+.body li {
+  margin-bottom: 17px;
+}
+
+.large {
+  font-size: 43px;
+  line-height: 1.4;
+  max-width: 1450px;
+}
+
+.small {
+  font-size: 24px;
+  color: var(--muted);
+}
+
+em {
+  font-family: Georgia, serif;
+}
+
+.accent {
+  border-left: 5px solid var(--blue);
+  padding-left: 30px;
+}
+
+.claim {
+  border-top: 2px solid var(--ink);
+  padding-top: 23px;
+}
+
+.formula {
+  font-family: Georgia, serif;
+  font-size: 40px;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 85px;
+  align-items: center;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.card {
+  border-top: 2px solid var(--ink);
+  padding: 25px 10px 20px 0;
+}
+
+.card:nth-child(even) {
+  border-color: var(--blue);
+}
+
+.card h3 {
+  font-size: 31px;
+  margin-bottom: 14px;
+}
+
+.card p {
+  font-size: 27px;
+  line-height: 1.45;
+}
+
+/* vessels */
+
+.vessels {
+  height: 560px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 55px;
+}
+
+.vessel {
+  position: relative;
+  width: 180px;
+  height: 430px;
+  border: 4px solid var(--ink);
+  border-top: none;
+}
+
+.water {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(54,93,120,.45);
+}
+
+.low {
+  height: 32%;
+}
+
+.high {
+  height: 86%;
+}
+
+.vessel-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: -55px;
+  font-size: 24px;
+}
+
+/* table */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 35px;
+  font-size: 27px;
+}
+
+th {
+  text-align: left;
+  border-bottom: 2px solid var(--ink);
+  padding: 14px 15px;
+}
+
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 18px 15px;
+}
+
+.highlight {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* title */
+
+.title-slide {
+  display: flex;
+  align-items: center;
+}
+
+.title-line {
+  width: 110px;
+  height: 5px;
+  background: var(--red);
+  margin-bottom: 40px;
+}
+
+/* end */
+
+.end {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.end h1 {
+  font-size: 100px;
+}
+
+.end a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid var(--blue);
+}
+
+/* navigation */
+
+.counter {
+  position: absolute;
+  right: 108px;
+  bottom: 46px;
+  font-family: monospace;
+  font-size: 20px;
+  color: var(--muted);
+  z-index: 10;
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background: var(--red);
+  z-index: 10;
+}
+
+.hint {
+  position: absolute;
+  left: 105px;
+  bottom: 43px;
+  font-size: 17px;
+  color: var(--muted);
+  z-index: 10;
+}
+
+/* animation */
+
+.slide.active .reveal {
+  animation: rise .5s ease both;
+}
+
+.slide.active .delay {
+  animation-delay: .12s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="viewport">
+
+<main class="stage" id="stage">
+
+<!-- 1 -->
+
+<section class="slide title-slide">
+  <div class="content reveal">
+
+    <div class="title-line"></div>
+
+    <h1>Ranking Relations</h1>
+
+    <div class="subtitle">
+      A Framework for Teleological<br>
+      Relational Egalitarianism
+    </div>
+
+    <div class="author">
+      Felipe Agustín Núñez-Michea
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 2 -->
+
+<section class="slide">
+  <div class="content">
+
+    <h2 class="reveal">
+      Can RE have a teleological structure?
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p class="large">
+        A teleological structure permits at least a partial ranking
+        of outcomes according to a betterness relation.
+      </p>
+
+      <p>I adopt an interpretation of relational egalitarianism (RE) as:</p>
+
+      <ol>
+        <li>a theory of justice,</li>
+        <li>concerned with the obligations of social and political institutions,</li>
+        <li>
+          directed at equal civic status in democratic relations free of
+          domination and marginalization.
+        </li>
+      </ol>
+
+      <p class="accent">
+        Citizens hold claims against public institutions.
+        Their satisfaction provides a way to represent and evaluate
+        institutional arrangements.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 3 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      Civic status: relativities matter
+    </h2>
+
+    <div class="large reveal delay">
+
+      How citizens stand relative to one another,
+      including the absence of hierarchies of domination
+      and marginalization.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 4 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      The dystopian egalitarian society
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p>
+        <em>Dystopian egalitarian society:</em>
+        (1) In a similar vein to Schelling's segregation model (1971),
+        different groups of society have mild in-group preferences
+        to be close to their own group, ending up, spontaneously,
+        in a segregated society in a finite amount of time.
+      </p>
+
+      <p>
+        (2) At least some think of others as mere instruments.
+        The state does nothing to prevent these in-group preferences
+        and dehumanizing beliefs; nevertheless, it secures
+        non-hierarchical relations.
+      </p>
+
+      <p class="accent">
+        Even without domination or marginalization,
+        the quality of civic relations gives RE a reason to object.
+      </p>
+
+      <p>
+        <strong>The proposed response:</strong>
+        civic status has an absolute dimension
+        as well as a comparative one.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 5 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      The comparative and absolute dimensions
+    </h2>
+
+    <div class="two-column">
+
+      <div class="vessels reveal">
+
+        <div class="vessel">
+          <div class="water low"></div>
+          <div class="vessel-label">Low provision</div>
+        </div>
+
+        <div class="vessel">
+          <div class="water high"></div>
+          <div class="vessel-label">High provision</div>
+        </div>
+
+      </div>
+
+      <div class="body reveal delay">
+
+        <p>
+          Relative levels express a comparative relation.
+        </p>
+
+        <p>
+          Equal levels can occur when provision is low
+          or when provision is high.
+        </p>
+
+        <p>
+          Comparative equality alone leaves the absolute level open.
+        </p>
+
+        <p class="accent">
+          Absolute equality is about the quality of a relation.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 6 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      Civic equality as a system of claims
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p class="large">
+        Citizens have claims against public institutions
+        to equal civic status.
+      </p>
+
+      <p>
+        A claim has an <strong>amount</strong> and a
+        <strong>strength</strong>.
+        Institutional provision determines its degree of satisfaction.
+      </p>
+
+      <p>This separates two evaluative concerns:</p>
+
+      <ul>
+        <li>satisfying claims to as large an extent as possible,</li>
+        <li>providing treatment in proportion to claim strengths.</li>
+      </ul>
+
+      <p class="accent">
+        The same representation can support different rules
+        for resolving conflicts between these concerns.
+      </p>
+
+      <p class="small">
+        Wintein (2024); Wintein &amp; Heilmann (2024).
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 7 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      Claims and their satisfaction
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p>
+        For one status-conferring good, let citizens be
+        \(I=\{1,\ldots,n\}\).
+      </p>
+
+      <div class="formula">
+
+      \[
+      C_i=(a,\sigma_i),
+      \qquad
+      a>0,
+      \quad
+      \sigma_i>0,
+      \quad
+      \sum_i\sigma_i=1.
+      \]
+
+      </div>
+
+      <p>
+        \(a\) is the common claim amount.
+        \(\sigma_i\) is the fixed comparative strength.
+        Let \(x_i\ge0\) denote effective institutional provision.
+      </p>
+
+      <p>
+        Using satisfaction fractions, where \(1=100\%\):
+      </p>
+
+      <div class="formula">
+
+      \[
+      \operatorname{Sat}_i(x_i)
+      =
+      \min\left\{1,\frac{x_i}{a}\right\},
+      \qquad
+      \operatorname{Mat}_i(x_i)=\frac{x_i}{a}.
+      \]
+
+      </div>
+
+      <p class="accent">
+        Provision above \(a\) leaves claim satisfaction at \(1\),
+        while mathematical satisfaction continues to increase.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 8 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      Proportionality and comparative inequality
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p>
+        Strength-adjusted mathematical satisfaction is:
+      </p>
+
+      <div class="formula">
+
+      \[
+      r_i(x)
+      =
+      \frac{\operatorname{Mat}_i(x_i)}{\sigma_i}
+      =
+      \frac{x_i}{a\sigma_i}.
+      \]
+
+      </div>
+
+      <p>
+        Provision is proportional exactly when
+        \(r_1=\cdots=r_n\).
+      </p>
+
+      <p>
+        Sort these values as
+        \(r_{(1)}\le\cdots\le r_{(n)}\).
+        For positive total provision, define:
+      </p>
+
+      <div class="formula">
+
+      \[
+      L_x^M\left(\frac{m}{n}\right)
+      =
+      \frac{
+        \sum_{i=1}^{m}r_{(i)}
+      }{
+        \sum_{i=1}^{n}r_{(i)}
+      },
+      \qquad
+      m=0,\ldots,n.
+      \]
+
+      </div>
+
+      <p class="accent">
+        A higher Lorenz curve means less comparative inequality
+        when the curves are ordered by dominance.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 9 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      Equal claims: absolute and comparative differences
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p>
+        Take \(a=1\) and
+        \(\sigma_1=\sigma_2=1/2\).
+      </p>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Provision \(x\)</th>
+            <th>Claim satisfaction</th>
+            <th>Comparative profile</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>\((1/3,1/3)\)</td>
+            <td>\((33\frac13\%,33\frac13\%)\)</td>
+            <td class="highlight">Equal</td>
+          </tr>
+
+          <tr>
+            <td>\((0.9,0.9)\)</td>
+            <td>\((90\%,90\%)\)</td>
+            <td class="highlight">Equal</td>
+          </tr>
+
+          <tr>
+            <td>\((0.6,0.3)\)</td>
+            <td>\((60\%,30\%)\)</td>
+            <td>Unequal</td>
+          </tr>
+
+          <tr>
+            <td>\((1,3)\)</td>
+            <td>\((100\%,100\%)\)</td>
+            <td>Unequal</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <p style="margin-top:35px">
+        Equal comparative profiles can coexist with different
+        absolute levels.
+      </p>
+
+      <p class="accent">
+        Full satisfaction can coexist with unequal provision.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 10 -->
+
+<section class="slide">
+
+  <div class="content">
+
+    <h2 class="reveal">
+      Outcome representation and partial ranking
+    </h2>
+
+    <div class="body reveal delay">
+
+      <p>
+        Represent each outcome by:
+      </p>
+
+      <div class="formula">
+
+      \[
+      \mathcal R(x)
+      =
+      \bigl(
+      \operatorname{Sat}(x),
+      L_x^M
+      \bigr).
+      \]
+
+      </div>
+
+      <p>
+        A minimal dominance rule ranks \(x\) above \(y\) if:
+      </p>
+
+      <div class="formula">
+
+      \[
+      \operatorname{Sat}_i(x_i)
+      \ge
+      \operatorname{Sat}_i(y_i)
+      \quad\text{for every }i,
+      \]
+
+      \[
+      L_x^M(p)\ge L_y^M(p)
+      \quad\text{for every }p,
+      \]
+
+      </div>
+
+      <p>
+        with a strict inequality for at least one citizen
+        or one Lorenz point.
+      </p>
+
+      <div class="card-grid">
+
+        <div class="card">
+          <h3>Absolute-first</h3>
+          <p>Prioritize claim satisfaction.</p>
+        </div>
+
+        <div class="card">
+          <h3>Comparative-first</h3>
+          <p>Prioritize proportionality.</p>
+        </div>
+
+        <div class="card">
+          <h3>Continuous aggregation</h3>
+          <p>
+            Specify trade-offs between the absolute
+            and comparative dimensions.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- 11 -->
+
+<section class="slide end">
+
+  <div class="content reveal">
+
+    <h1>Thank you</h1>
+
+    <div class="large">
+      <a href="mailto:fanunezmichea@gmail.com">
+        fanunezmichea@gmail.com
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="hint">
+  ← → navigate · F fullscreen
+</div>
+
+<div class="counter" id="counter"></div>
+<div class="progress" id="progress"></div>
+
+</main>
+
+</div>
+
+
+<script>
+
+const stage = document.getElementById("stage");
+const slides = [...document.querySelectorAll(".slide")];
+const counter = document.getElementById("counter");
+const progress = document.getElementById("progress");
+
+let current = 0;
+
+function fit() {
+  const scale = Math.min(
+    window.innerWidth / 1920,
+    window.innerHeight / 1080
+  );
+
+  stage.style.transform =
+    `translate(-50%, -50%) scale(${scale})`;
+}
+
+function go(n) {
+
+  current = Math.max(
+    0,
+    Math.min(slides.length - 1, n)
+  );
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === current);
+  });
+
+  counter.textContent =
+    String(current + 1).padStart(2,"0") +
+    " / " +
+    String(slides.length).padStart(2,"0");
+
+  progress.style.width =
+    ((current + 1) / slides.length * 100) + "%";
+
+  history.replaceState(
+    null,
+    "",
+    "#" + (current + 1)
+  );
+}
+
+function fromHash() {
+
+  const n = parseInt(
+    location.hash.substring(1),
+    10
+  );
+
+  go(
+    Number.isFinite(n)
+      ? n - 1
+      : 0
+  );
+}
+
+window.addEventListener("resize", fit);
+window.addEventListener("hashchange", fromHash);
+
+document.addEventListener("keydown", e => {
+
+  if (
+    e.key === "ArrowRight" ||
+    e.key === "PageDown" ||
+    e.key === " "
+  ) {
+    e.preventDefault();
+    go(current + 1);
+  }
+
+  else if (
+    e.key === "ArrowLeft" ||
+    e.key === "PageUp"
+  ) {
+    e.preventDefault();
+    go(current - 1);
+  }
+
+  else if (e.key === "Home") {
+    go(0);
+  }
+
+  else if (e.key === "End") {
+    go(slides.length - 1);
+  }
+
+  else if (e.key.toLowerCase() === "f") {
+    document.documentElement.requestFullscreen?.();
+  }
+
+});
+
+document.addEventListener("click", e => {
+
+  if (e.target.closest("a")) return;
+
+  if (e.clientX > window.innerWidth * .55) {
+    go(current + 1);
+  }
+
+  else if (e.clientX < window.innerWidth * .45) {
+    go(current - 1);
+  }
+
+});
+
+fit();
+fromHash();
+
+</script>
+
+</body>
+</html>
