@@ -19,9 +19,7 @@ window.MathJax = {
 };
 </script>
 
-<script async
-src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <style>
 
@@ -32,7 +30,6 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   --red: #b84a3c;
   --blue: #365d78;
   --hair: rgba(21,23,25,.15);
-  --hair2: rgba(21,23,25,.08);
 }
 
 * {
@@ -78,9 +75,11 @@ body {
   position: absolute;
   inset: 0;
   padding: 92px 115px 88px;
+
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+
   transition:
     opacity .32s ease,
     visibility .32s step-end;
@@ -109,7 +108,6 @@ body {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-  transition: opacity .38s ease;
 }
 
 .content {
@@ -117,25 +115,8 @@ body {
   z-index: 2;
   height: 100%;
 }
-.two-column {
-  display: grid;
-  grid-template-columns: .98fr 1.02fr;
-  gap: 58px;
-  align-items: center;
-}
 
-.communicating-vessels {
-  display: block;
-  width: 100%;
-  max-width: 760px;
-  max-height: 590px;
-  object-fit: contain;
-  margin: 0 auto;
-  mix-blend-mode: multiply;
-}
-/* -------------------------
-   TYPOGRAPHY
--------------------------- */
+/* TYPOGRAPHY */
 
 h1,
 h2,
@@ -145,7 +126,6 @@ p {
 }
 
 h1 {
-  font-family: "EB Garamond", Georgia, serif;
   font-size: 68px;
   line-height: 1;
   letter-spacing: -.025em;
@@ -154,7 +134,6 @@ h1 {
 }
 
 h2 {
-  font-family: "EB Garamond", Georgia, serif;
   font-size: 43px;
   line-height: 1.08;
   letter-spacing: -.012em;
@@ -163,7 +142,6 @@ h2 {
 }
 
 h3 {
-  font-family: "EB Garamond", Georgia, serif;
   font-weight: 600;
 }
 
@@ -217,10 +195,6 @@ h3 {
   margin: 10px 0 15px;
 }
 
-em {
-  font-style: italic;
-}
-
 strong {
   font-weight: 600;
 }
@@ -229,32 +203,12 @@ a {
   color: inherit;
 }
 
-.slide-link {
-  display: inline-block;
-  margin-top: 10px;
-  padding-bottom: 2px;
-  color: var(--blue);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(54,93,120,.45);
-  font-size: 22px;
-}
-
-.slide-link:hover {
-  border-color: var(--blue);
-}
-
 .accent {
   border-left: 4px solid var(--blue);
   padding-left: 25px;
 }
 
-.muted {
-  color: var(--muted);
-}
-
-/* -------------------------
-   TITLE SLIDE
--------------------------- */
+/* TITLE */
 
 .title-slide {
   display: flex;
@@ -273,9 +227,7 @@ a {
   margin-bottom: 31px;
 }
 
-/* -------------------------
-   BASIC LAYOUTS
--------------------------- */
+/* BASIC LAYOUT */
 
 .center {
   display: flex;
@@ -284,23 +236,81 @@ a {
 
 .two-column {
   display: grid;
-  grid-template-columns: .92fr 1.08fr;
-  gap: 68px;
+  grid-template-columns: .95fr 1.05fr;
+  gap: 70px;
   align-items: center;
 }
 
-.connected-vessels {
-  display: block;
-  width: 100%;
-  max-width: 720px;
-  max-height: 560px;
-  object-fit: contain;
-  margin: 0 auto;
+/* COMMUNICATING VESSELS */
+
+.vessels-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* -------------------------
-   TABLES / CARDS
--------------------------- */
+.vessels-svg {
+  width: 100%;
+  max-width: 730px;
+  height: auto;
+  overflow: visible;
+}
+
+.vessel-outline {
+  fill: none;
+  stroke: #111;
+  stroke-width: 7;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.vessel-liquid {
+  fill: #aaa;
+}
+
+.vessel-liquid-dark {
+  fill: #929292;
+}
+
+.flow-dot {
+  fill: #555;
+}
+
+.surface {
+  stroke: #555;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* LINKS */
+
+.slide-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding-bottom: 2px;
+
+  color: var(--blue);
+  text-decoration: none;
+
+  border-bottom:
+    1px solid rgba(54,93,120,.45);
+
+  font-size: 22px;
+}
+
+.slide-link:hover {
+  border-color: var(--blue);
+}
+
+.back-link {
+  font-size: 21px;
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom:
+    1px solid rgba(54,93,120,.4);
+}
+
+/* TABLE */
 
 table {
   width: 100%;
@@ -312,13 +322,17 @@ table {
 
 th {
   text-align: left;
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom:
+    1.5px solid var(--ink);
+
   padding: 9px 12px;
   font-weight: 600;
 }
 
 td {
-  border-bottom: 1px solid var(--hair);
+  border-bottom:
+    1px solid var(--hair);
+
   padding: 11px 12px;
 }
 
@@ -327,15 +341,21 @@ td {
   font-weight: 600;
 }
 
+/* CARDS */
+
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap: 28px;
   margin-top: 24px;
 }
 
 .card {
-  border-top: 1.5px solid var(--ink);
+  border-top:
+    1.5px solid var(--ink);
+
   padding-top: 15px;
 }
 
@@ -357,13 +377,12 @@ td {
   line-height: 1.3;
 }
 
-/* -------------------------
-   LORENZ APPENDIX
--------------------------- */
+/* LORENZ APPENDIX */
 
 .lorenz-slide .content {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows:
+    auto 1fr;
 }
 
 .lorenz-header {
@@ -373,26 +392,25 @@ td {
   gap: 40px;
 }
 
-.back-link {
-  font-size: 21px;
-  color: var(--blue);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(54,93,120,.4);
-  margin-top: 8px;
-}
-
 .lorenz-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 65px;
   min-height: 0;
 }
 
 .lorenz-example {
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows:
+    auto auto 1fr auto;
+
   min-height: 0;
-  border-top: 1.5px solid var(--ink);
+
+  border-top:
+    1.5px solid var(--ink);
+
   padding-top: 14px;
 }
 
@@ -421,17 +439,23 @@ td {
 }
 
 .graph-axis {
-  stroke: rgba(21,23,25,.78);
+  stroke:
+    rgba(21,23,25,.78);
+
   stroke-width: 2;
 }
 
 .graph-grid {
-  stroke: rgba(21,23,25,.09);
+  stroke:
+    rgba(21,23,25,.09);
+
   stroke-width: 1;
 }
 
 .graph-equality {
-  stroke: rgba(21,23,25,.45);
+  stroke:
+    rgba(21,23,25,.45);
+
   stroke-width: 2;
   stroke-dasharray: 8 9;
   fill: none;
@@ -445,14 +469,7 @@ td {
   stroke-linejoin: round;
 }
 
-.graph-b {
-  stroke: var(--red);
-  stroke-width: 5;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
+.graph-b,
 .graph-single {
   stroke: var(--red);
   stroke-width: 5;
@@ -461,18 +478,20 @@ td {
   stroke-linejoin: round;
 }
 
-.graph-point {
-  fill: var(--ink);
-}
-
 .graph-point-red {
   fill: var(--red);
 }
 
 .graph-label {
-  font-family: "EB Garamond", Georgia, serif;
+  font-family:
+    "EB Garamond",
+    Georgia,
+    serif;
+
   font-size: 19px;
-  fill: rgba(21,23,25,.70);
+
+  fill:
+    rgba(21,23,25,.70);
 }
 
 .graph-small {
@@ -485,9 +504,7 @@ td {
   margin-top: 4px;
 }
 
-/* -------------------------
-   END
--------------------------- */
+/* END */
 
 .end-slide {
   display: grid;
@@ -505,21 +522,24 @@ td {
 
 .end-slide a {
   text-decoration: none;
-  border-bottom: 1px solid var(--blue);
+
+  border-bottom:
+    1px solid var(--blue);
 }
 
-/* -------------------------
-   CHROME
--------------------------- */
+/* CHROME */
 
 .counter {
   position: absolute;
   right: 102px;
   bottom: 43px;
-  font-family: "EB Garamond", Georgia, serif;
+
   font-size: 18px;
   letter-spacing: .06em;
-  color: rgba(21,23,25,.5);
+
+  color:
+    rgba(21,23,25,.5);
+
   z-index: 10;
 }
 
@@ -527,10 +547,15 @@ td {
   position: absolute;
   left: 0;
   bottom: 0;
+
   height: 3px;
   background: var(--red);
+
   width: 0;
-  transition: width .25s ease;
+
+  transition:
+    width .25s ease;
+
   z-index: 10;
 }
 
@@ -538,17 +563,22 @@ td {
   position: absolute;
   left: 102px;
   bottom: 42px;
+
   font-size: 17px;
-  color: rgba(21,23,25,.45);
+
+  color:
+    rgba(21,23,25,.45);
+
   z-index: 10;
 }
 
-/* -------------------------
-   ANIMATION
--------------------------- */
+/* ENTRY ANIMATION */
 
 .slide.active .reveal {
-  animation: rise .48s cubic-bezier(.2,.72,.2,1) both;
+  animation:
+    rise .48s
+    cubic-bezier(.2,.72,.2,1)
+    both;
 }
 
 .slide.active .d2 {
@@ -560,54 +590,73 @@ td {
 }
 
 @keyframes rise {
+
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform:
+      translateY(12px);
   }
 
   to {
     opacity: 1;
     transform: none;
   }
+
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media
+(prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
-    animation-duration: .001ms !important;
-    transition-duration: .001ms !important;
+    animation-duration:
+      .001ms !important;
+
+    transition-duration:
+      .001ms !important;
   }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="viewport">
 
-<main class="stage" id="stage">
+<main
+  class="stage"
+  id="stage">
 
-<!-- =====================================================
-     1. TITLE
-===================================================== -->
 
-<section class="slide title-slide" data-anchor="title">
+<!-- 1 -->
+
+<section
+  class="slide title-slide"
+  data-anchor="title">
 
   <div class="content reveal">
 
     <div class="title-line"></div>
 
-    <h1>Ranking Relations</h1>
+    <h1>
+      Ranking Relations
+    </h1>
 
     <div class="subtitle">
+
       A Framework for Teleological<br>
       Relational Egalitarianism
+
     </div>
 
     <div class="author">
+
       Felipe Agustín Núñez-Michea
+
     </div>
 
   </div>
@@ -615,46 +664,66 @@ td {
 </section>
 
 
-<!-- =====================================================
-     2. PROPOSAL
-===================================================== -->
+<!-- 2 -->
 
-<section class="slide center" data-anchor="proposal">
+<section
+  class="slide center"
+  data-anchor="proposal">
 
   <div class="content">
 
     <h2 class="reveal">
+
       Can RE have a teleological structure?
+
     </h2>
 
     <div class="body reveal d2">
 
       <p class="large">
-        A teleological structure permits at least a partial ranking
-        of outcomes according to a betterness relation.
+
+        A teleological structure permits
+        at least a partial ranking of outcomes
+        according to a betterness relation.
+
       </p>
 
       <p>
-        I adopt an interpretation of relational egalitarianism (RE) as:
+
+        I adopt an interpretation of
+        relational egalitarianism (RE) as:
+
       </p>
 
       <ol>
-        <li>a theory of justice,</li>
 
         <li>
-          concerned with the obligations of social and political institutions,
+          a theory of justice,
         </li>
 
         <li>
-          directed at equal civic status in democratic relations free of
+
+          concerned with the obligations
+          of social and political institutions,
+
+        </li>
+
+        <li>
+
+          directed at equal civic status
+          in democratic relations free of
           domination and marginalization.
+
         </li>
+
       </ol>
 
       <p class="accent">
+
         Citizens hold claims against public institutions.
-        Their satisfaction provides a way to represent and evaluate
-        institutional arrangements.
+        Their satisfaction provides a way
+        to represent and evaluate institutional arrangements.
+
       </p>
 
     </div>
@@ -664,22 +733,25 @@ td {
 </section>
 
 
-<!-- =====================================================
-     3. CIVIC STATUS
-===================================================== -->
+<!-- 3 -->
 
-<section class="slide center" data-anchor="civic-status">
+<section
+  class="slide center"
+  data-anchor="civic-status">
 
   <div class="content">
 
     <h2 class="reveal">
+
       Civic status: relativities matter
+
     </h2>
 
     <div class="large reveal d2">
 
-      How citizens stand relative to one another, including the absence of
-      hierarchies of domination and marginalization.
+      How citizens stand relative to one another,
+      including the absence of hierarchies
+      of domination and marginalization.
 
     </div>
 
@@ -688,43 +760,63 @@ td {
 </section>
 
 
-<!-- =====================================================
-     4. DYSTOPIAN EGALITARIAN SOCIETY
-===================================================== -->
+<!-- 4 -->
 
-<section class="slide center" data-anchor="dystopia">
+<section
+  class="slide center"
+  data-anchor="dystopia">
 
   <div class="content">
 
     <h2 class="reveal">
+
       The dystopian egalitarian society
+
     </h2>
 
     <div class="body reveal d2">
 
       <p>
+
         <em>Dystopian egalitarian society:</em>
-        (1) In a similar vein to Schelling's segregation model (1971),
-        different groups of society have mild in-group preferences to be
-        close to their own group, ending up, spontaneously, in a segregated
-        society in a finite amount of time.
+
+        (1) In a similar vein to
+        Schelling's segregation model (1971),
+        different groups of society have mild
+        in-group preferences to be close to
+        their own group, ending up,
+        spontaneously, in a segregated society
+        in a finite amount of time.
+
       </p>
 
       <p>
-        (2) At least some think of others as mere instruments.
-        The state does nothing to prevent these in-group preferences and
-        dehumanizing beliefs; nevertheless, it secures non-hierarchical
-        relations.
+
+        (2) At least some think of others
+        as mere instruments.
+
+        The state does nothing to prevent
+        these in-group preferences and
+        dehumanizing beliefs; nevertheless,
+        it secures non-hierarchical relations.
+
       </p>
 
       <p>
-        Even without domination or marginalization, the quality of civic
-        relations gives RE a reason to object.
+
+        Even without domination or marginalization,
+        the quality of civic relations gives RE
+        a reason to object.
+
       </p>
 
       <p class="accent">
+
         <strong>The proposed response:</strong>
-        civic status has an absolute dimension as well as a comparative one.
+
+        civic status has an absolute dimension
+        as well as a comparative one.
+
       </p>
 
     </div>
@@ -734,46 +826,670 @@ td {
 </section>
 
 
-<!-- =====================================================
-     5. COMPARATIVE / ABSOLUTE DIMENSIONS
-===================================================== -->
+<!-- 5 -->
 
-<section class="slide center" data-anchor="dimensions">
+<section
+  class="slide center"
+  data-anchor="dimensions">
 
   <div class="content">
 
     <h2 class="reveal">
+
       The comparative and absolute dimensions
+
     </h2>
+
 
     <div class="two-column">
 
-      <div class="reveal">
 
-        <img
-          src="assets/communicating-vessels.gif"
-          alt="Animated communicating vessels"
-          class="communicating-vessels">
+      <!--
+        SELF-CONTAINED ANIMATED COMMUNICATING VESSELS
+      -->
+
+      <div class="vessels-wrap reveal">
+
+        <svg
+          class="vessels-svg"
+          viewBox="0 0 600 560"
+          role="img"
+          aria-label="Communicating vessels in which unequal liquid levels gradually equalise">
+
+
+          <defs>
+
+            <!--
+              each vertical vessel has its own clip
+            -->
+
+            <clipPath id="leftTube">
+              <rect
+                x="60"
+                y="60"
+                width="110"
+                height="390"/>
+            </clipPath>
+
+            <clipPath id="middleTube">
+              <rect
+                x="245"
+                y="60"
+                width="110"
+                height="390"/>
+            </clipPath>
+
+            <clipPath id="rightTube">
+              <rect
+                x="430"
+                y="60"
+                width="110"
+                height="390"/>
+            </clipPath>
+
+          </defs>
+
+
+          <!--
+            BOTTOM LIQUID:
+            always filled because the vessels communicate
+          -->
+
+          <rect
+            class="vessel-liquid-dark"
+            x="60"
+            y="420"
+            width="480"
+            height="80"
+            rx="28"/>
+
+
+          <!-- LEFT LIQUID -->
+
+          <g clip-path="url(#leftTube)">
+
+            <rect
+              class="vessel-liquid"
+              x="60"
+              y="180"
+              width="110"
+              height="240">
+
+              <!--
+                initial height 240
+                final height 120
+              -->
+
+              <animate
+                attributeName="y"
+                dur="6s"
+                repeatCount="indefinite"
+                values="
+                  180;
+                  205;
+                  235;
+                  265;
+                  290;
+                  300;
+                  300;
+                  300;
+                  180
+                "
+                keyTimes="
+                  0;
+                  .12;
+                  .25;
+                  .38;
+                  .52;
+                  .64;
+                  .78;
+                  .90;
+                  1
+                "/>
+
+              <animate
+                attributeName="height"
+                dur="6s"
+                repeatCount="indefinite"
+                values="
+                  240;
+                  215;
+                  185;
+                  155;
+                  130;
+                  120;
+                  120;
+                  120;
+                  240
+                "
+                keyTimes="
+                  0;
+                  .12;
+                  .25;
+                  .38;
+                  .52;
+                  .64;
+                  .78;
+                  .90;
+                  1
+                "/>
+
+            </rect>
+
+          </g>
+
+
+          <!-- MIDDLE LIQUID -->
+
+          <g clip-path="url(#middleTube)">
+
+            <rect
+              class="vessel-liquid"
+              x="245"
+              y="350"
+              width="110"
+              height="70">
+
+              <animate
+                attributeName="y"
+                dur="6s"
+                repeatCount="indefinite"
+                values="
+                  350;
+                  340;
+                  330;
+                  320;
+                  310;
+                  300;
+                  300;
+                  300;
+                  350
+                "
+                keyTimes="
+                  0;
+                  .12;
+                  .25;
+                  .38;
+                  .52;
+                  .64;
+                  .78;
+                  .90;
+                  1
+                "/>
+
+              <animate
+                attributeName="height"
+                dur="6s"
+                repeatCount="indefinite"
+                values="
+                  70;
+                  80;
+                  90;
+                  100;
+                  110;
+                  120;
+                  120;
+                  120;
+                  70
+                "
+                keyTimes="
+                  0;
+                  .12;
+                  .25;
+                  .38;
+                  .52;
+                  .64;
+                  .78;
+                  .90;
+                  1
+                "/>
+
+            </rect>
+
+          </g>
+
+
+          <!-- RIGHT LIQUID -->
+
+          <g clip-path="url(#rightTube)">
+
+            <rect
+              class="vessel-liquid"
+              x="430"
+              y="370"
+              width="110"
+              height="50">
+
+              <animate
+                attributeName="y"
+                dur="6s"
+                repeatCount="indefinite"
+                values="
+                  370;
+                  355;
+                  340;
+                  325;
+                  312;
+                  300;
+                  300;
+                  300;
+                  370
+                "
+                keyTimes="
+                  0;
+                  .12;
+                  .25;
+                  .38;
+                  .52;
+                  .64;
+                  .78;
+                  .90;
+                  1
+                "/>
+
+              <animate
+                attributeName="height"
+                dur="6s"
+                repeatCount="indefinite"
+                values="
+                  50;
+                  65;
+                  80;
+                  95;
+                  108;
+                  120;
+                  120;
+                  120;
+                  50
+                "
+                keyTimes="
+                  0;
+                  .12;
+                  .25;
+                  .38;
+                  .52;
+                  .64;
+                  .78;
+                  .90;
+                  1
+                "/>
+
+            </rect>
+
+          </g>
+
+
+          <!--
+            SUBTLE FLOW PARTICLES
+          -->
+
+          <circle
+            class="flow-dot"
+            cx="160"
+            cy="460"
+            r="6">
+
+            <animate
+              attributeName="cx"
+              values="150;440"
+              dur="1.5s"
+              repeatCount="indefinite"/>
+
+            <animate
+              attributeName="opacity"
+              values="0;.65;.65;0"
+              dur="1.5s"
+              repeatCount="indefinite"/>
+
+          </circle>
+
+
+          <circle
+            class="flow-dot"
+            cx="130"
+            cy="475"
+            r="4">
+
+            <animate
+              attributeName="cx"
+              values="130;500"
+              dur="2s"
+              begin=".4s"
+              repeatCount="indefinite"/>
+
+            <animate
+              attributeName="opacity"
+              values="0;.4;.4;0"
+              dur="2s"
+              begin=".4s"
+              repeatCount="indefinite"/>
+
+          </circle>
+
+
+          <!--
+            VESSEL OUTLINES
+          -->
+
+          <!-- LEFT -->
+
+          <path
+            class="vessel-outline"
+            d="
+              M60 60
+              V455
+              Q60 500 105 500
+              H170
+              V60
+            "/>
+
+
+          <!-- MIDDLE -->
+
+          <path
+            class="vessel-outline"
+            d="
+              M245 60
+              V455
+              Q245 500 290 500
+              H355
+              V60
+            "/>
+
+
+          <!-- RIGHT -->
+
+          <path
+            class="vessel-outline"
+            d="
+              M430 60
+              V455
+              Q430 500 475 500
+              H540
+              V60
+            "/>
+
+
+          <!--
+            CONNECTOR OUTLINES
+          -->
+
+          <path
+            class="vessel-outline"
+            d="
+              M170 455
+              Q170 500 215 500
+              H245
+            "/>
+
+          <path
+            class="vessel-outline"
+            d="
+              M355 455
+              Q355 500 400 500
+              H430
+            "/>
+
+
+          <!-- OPEN TOP ELLIPSES -->
+
+          <ellipse
+            cx="115"
+            cy="60"
+            rx="55"
+            ry="12"
+            fill="var(--paper)"
+            stroke="#111"
+            stroke-width="7"/>
+
+          <ellipse
+            cx="300"
+            cy="60"
+            rx="55"
+            ry="12"
+            fill="var(--paper)"
+            stroke="#111"
+            stroke-width="7"/>
+
+          <ellipse
+            cx="485"
+            cy="60"
+            rx="55"
+            ry="12"
+            fill="var(--paper)"
+            stroke="#111"
+            stroke-width="7"/>
+
+
+          <!--
+            LIQUID SURFACE LINES
+          -->
+
+          <line
+            class="surface"
+            x1="62"
+            x2="168"
+            y1="180"
+            y2="180">
+
+            <animate
+              attributeName="y1"
+              dur="6s"
+              repeatCount="indefinite"
+              values="
+                180;
+                205;
+                235;
+                265;
+                290;
+                300;
+                300;
+                300;
+                180
+              "
+              keyTimes="
+                0;
+                .12;
+                .25;
+                .38;
+                .52;
+                .64;
+                .78;
+                .90;
+                1
+              "/>
+
+            <animate
+              attributeName="y2"
+              dur="6s"
+              repeatCount="indefinite"
+              values="
+                180;
+                205;
+                235;
+                265;
+                290;
+                300;
+                300;
+                300;
+                180
+              "
+              keyTimes="
+                0;
+                .12;
+                .25;
+                .38;
+                .52;
+                .64;
+                .78;
+                .90;
+                1
+              "/>
+
+          </line>
+
+
+          <line
+            class="surface"
+            x1="247"
+            x2="353"
+            y1="350"
+            y2="350">
+
+            <animate
+              attributeName="y1"
+              dur="6s"
+              repeatCount="indefinite"
+              values="
+                350;
+                340;
+                330;
+                320;
+                310;
+                300;
+                300;
+                300;
+                350
+              "
+              keyTimes="
+                0;
+                .12;
+                .25;
+                .38;
+                .52;
+                .64;
+                .78;
+                .90;
+                1
+              "/>
+
+            <animate
+              attributeName="y2"
+              dur="6s"
+              repeatCount="indefinite"
+              values="
+                350;
+                340;
+                330;
+                320;
+                310;
+                300;
+                300;
+                300;
+                350
+              "
+              keyTimes="
+                0;
+                .12;
+                .25;
+                .38;
+                .52;
+                .64;
+                .78;
+                .90;
+                1
+              "/>
+
+          </line>
+
+
+          <line
+            class="surface"
+            x1="432"
+            x2="538"
+            y1="370"
+            y2="370">
+
+            <animate
+              attributeName="y1"
+              dur="6s"
+              repeatCount="indefinite"
+              values="
+                370;
+                355;
+                340;
+                325;
+                312;
+                300;
+                300;
+                300;
+                370
+              "
+              keyTimes="
+                0;
+                .12;
+                .25;
+                .38;
+                .52;
+                .64;
+                .78;
+                .90;
+                1
+              "/>
+
+            <animate
+              attributeName="y2"
+              dur="6s"
+              repeatCount="indefinite"
+              values="
+                370;
+                355;
+                340;
+                325;
+                312;
+                300;
+                300;
+                300;
+                370
+              "
+              keyTimes="
+                0;
+                .12;
+                .25;
+                .38;
+                .52;
+                .64;
+                .78;
+                .90;
+                1
+              "/>
+
+          </line>
+
+        </svg>
 
       </div>
+
 
       <div class="body reveal d2">
 
         <p>
-          Relative levels express a comparative relation.
+
+          Relative levels express
+          a comparative relation.
+
         </p>
 
         <p>
-          Equal levels can occur when provision is low
+
+          Equal levels can occur
+          when provision is low
           or when provision is high.
+
         </p>
 
         <p>
-          Comparative equality alone leaves the absolute level open.
+
+          Comparative equality alone
+          leaves the absolute level open.
+
         </p>
 
         <p>
-          Absolute equality is about the quality of a relation.
+
+          Absolute equality is about
+          the quality of a relation.
+
         </p>
 
       </div>
@@ -785,51 +1501,78 @@ td {
 </section>
 
 
-<!-- =====================================================
-     6. CIVIC CLAIMS
-===================================================== -->
+<!-- 6 -->
 
-<section class="slide center" data-anchor="claims">
+<section
+  class="slide center"
+  data-anchor="claims">
 
   <div class="content">
 
     <h2 class="reveal">
+
       Civic equality as a system of claims
+
     </h2>
 
     <div class="body reveal d2">
 
       <p class="large">
-        Citizens have claims against public institutions to equal civic status.
+
+        Citizens have claims against
+        public institutions to equal civic status.
+
       </p>
 
       <p>
-        A claim has an <strong>amount</strong> and a
+
+        A claim has an
+        <strong>amount</strong>
+        and a
         <strong>strength</strong>.
-        Institutional provision determines its degree of satisfaction.
+
+        Institutional provision determines
+        its degree of satisfaction.
+
       </p>
 
       <p>
+
         This separates two evaluative concerns:
+
       </p>
 
       <ul>
+
         <li>
-          satisfying claims to as large an extent as possible,
+
+          satisfying claims to as large
+          an extent as possible,
+
         </li>
 
         <li>
-          providing treatment in proportion to claim strengths.
+
+          providing treatment in proportion
+          to claim strengths.
+
         </li>
+
       </ul>
 
       <p class="accent">
-        The same representation can support different rules for resolving
-        conflicts between these concerns.
+
+        The same representation can support
+        different rules for resolving conflicts
+        between these concerns.
+
       </p>
 
       <p class="small">
-        Wintein (2024); Wintein &amp; Heilmann (2024).
+
+        Wintein (2024);
+        Wintein &amp; Heilmann (2024).
+
       </p>
 
     </div>
@@ -839,23 +1582,29 @@ td {
 </section>
 
 
-<!-- =====================================================
-     7. SAT / MAT
-===================================================== -->
+<!-- 7 -->
 
-<section class="slide center" data-anchor="satisfaction">
+<section
+  class="slide center"
+  data-anchor="satisfaction">
 
   <div class="content">
 
     <h2 class="reveal">
+
       Claims and their satisfaction
+
     </h2>
 
     <div class="body reveal d2">
 
       <p>
-        For one status-conferring good, let citizens be
+
+        For one status-conferring good,
+        let citizens be
+
         \(I=\{1,\ldots,n\}\).
+
       </p>
 
       <div class="formula">
@@ -873,13 +1622,21 @@ td {
       </div>
 
       <p>
+
         \(a\) is the common claim amount.
+
         \(\sigma_i\) is the fixed comparative strength.
-        Let \(x_i\ge0\) denote effective institutional provision.
+
+        Let \(x_i\ge0\) denote
+        effective institutional provision.
+
       </p>
 
       <p>
-        Using satisfaction fractions, where \(1=100\%\):
+
+        Using satisfaction fractions,
+        where \(1=100\%\):
+
       </p>
 
       <div class="formula">
@@ -887,7 +1644,10 @@ td {
         \[
         \operatorname{Sat}_i(x_i)
         =
-        \min\left\{1,\frac{x_i}{a}\right\},
+        \min\left\{
+        1,
+        \frac{x_i}{a}
+        \right\},
         \qquad
         \operatorname{Mat}_i(x_i)
         =
@@ -897,8 +1657,12 @@ td {
       </div>
 
       <p class="accent">
-        Provision above \(a\) leaves claim satisfaction at \(1\),
-        while mathematical satisfaction continues to increase.
+
+        Provision above \(a\)
+        leaves claim satisfaction at \(1\),
+        while mathematical satisfaction
+        continues to increase.
+
       </p>
 
     </div>
@@ -908,22 +1672,27 @@ td {
 </section>
 
 
-<!-- =====================================================
-     8. PROPORTIONALITY
-===================================================== -->
+<!-- 8 -->
 
-<section class="slide center" data-anchor="proportionality">
+<section
+  class="slide center"
+  data-anchor="proportionality">
 
   <div class="content">
 
     <h2 class="reveal">
+
       Proportionality and comparative inequality
+
     </h2>
 
     <div class="body reveal d2">
 
       <p>
-        Strength-adjusted mathematical satisfaction is:
+
+        Strength-adjusted
+        mathematical satisfaction is:
+
       </p>
 
       <div class="formula">
@@ -931,33 +1700,53 @@ td {
         \[
         r_i(x)
         =
-        \frac{\operatorname{Mat}_i(x_i)}{\sigma_i}
+        \frac{
+        \operatorname{Mat}_i(x_i)
+        }{
+        \sigma_i
+        }
         =
-        \frac{x_i}{a\sigma_i}.
+        \frac{
+        x_i
+        }{
+        a\sigma_i
+        }.
         \]
 
       </div>
 
       <p>
+
         Provision is proportional exactly when
+
         \(r_1=\cdots=r_n\).
+
       </p>
 
       <p>
+
         Sort these values as
+
         \(r_{(1)}\le\cdots\le r_{(n)}\).
+
         For positive total provision:
+
       </p>
 
       <div class="formula">
 
         \[
-        L_x^M\left(\frac{m}{n}\right)
+        L_x^M
+        \left(
+        \frac{m}{n}
+        \right)
         =
         \frac{
-          \sum_{i=1}^{m}r_{(i)}
+        \sum_{i=1}^{m}
+        r_{(i)}
         }{
-          \sum_{i=1}^{n}r_{(i)}
+        \sum_{i=1}^{n}
+        r_{(i)}
         },
         \qquad
         m=0,\ldots,n.
@@ -966,14 +1755,20 @@ td {
       </div>
 
       <p>
-        A higher Lorenz curve means less comparative inequality when
-        the curves are ordered by dominance.
+
+        A higher Lorenz curve means
+        less comparative inequality
+        when the curves are ordered
+        by dominance.
+
       </p>
 
       <a
         class="slide-link"
         href="#lorenz-examples">
+
         Lorenz curve examples →
+
       </a>
 
     </div>
@@ -983,59 +1778,121 @@ td {
 </section>
 
 
-<!-- =====================================================
-     9. EQUAL CLAIMS EXAMPLE
-===================================================== -->
+<!-- 9 -->
 
-<section class="slide center" data-anchor="equal-claims">
+<section
+  class="slide center"
+  data-anchor="equal-claims">
 
   <div class="content">
 
     <h2 class="reveal">
-      Equal claims: absolute and comparative differences
+
+      Equal claims:
+      absolute and comparative differences
+
     </h2>
 
     <div class="body reveal d2">
 
       <p>
-        Take \(a=1\) and
+
+        Take
+
+        \(a=1\)
+
+        and
+
         \(\sigma_1=\sigma_2=1/2\).
+
       </p>
 
       <table>
 
         <thead>
+
           <tr>
-            <th>Provision \(x\)</th>
-            <th>Claim satisfaction</th>
-            <th>Comparative profile</th>
+
+            <th>
+              Provision \(x\)
+            </th>
+
+            <th>
+              Claim satisfaction
+            </th>
+
+            <th>
+              Comparative profile
+            </th>
+
           </tr>
+
         </thead>
 
         <tbody>
 
           <tr>
-            <td>\((1/3,1/3)\)</td>
-            <td>\((33\frac13\%,33\frac13\%)\)</td>
-            <td class="highlight">Equal</td>
+
+            <td>
+              \((1/3,1/3)\)
+            </td>
+
+            <td>
+              \((33\frac13\%,33\frac13\%)\)
+            </td>
+
+            <td class="highlight">
+              Equal
+            </td>
+
           </tr>
 
           <tr>
-            <td>\((0.9,0.9)\)</td>
-            <td>\((90\%,90\%)\)</td>
-            <td class="highlight">Equal</td>
+
+            <td>
+              \((0.9,0.9)\)
+            </td>
+
+            <td>
+              \((90\%,90\%)\)
+            </td>
+
+            <td class="highlight">
+              Equal
+            </td>
+
           </tr>
 
           <tr>
-            <td>\((0.6,0.3)\)</td>
-            <td>\((60\%,30\%)\)</td>
-            <td>Unequal</td>
+
+            <td>
+              \((0.6,0.3)\)
+            </td>
+
+            <td>
+              \((60\%,30\%)\)
+            </td>
+
+            <td>
+              Unequal
+            </td>
+
           </tr>
 
           <tr>
-            <td>\((1,3)\)</td>
-            <td>\((100\%,100\%)\)</td>
-            <td>Unequal</td>
+
+            <td>
+              \((1,3)\)
+            </td>
+
+            <td>
+              \((100\%,100\%)\)
+            </td>
+
+            <td>
+              Unequal
+            </td>
+
           </tr>
 
         </tbody>
@@ -1043,11 +1900,17 @@ td {
       </table>
 
       <p style="margin-top:22px">
-        Equal comparative profiles can coexist with different absolute levels.
+
+        Equal comparative profiles
+        can coexist with different absolute levels.
+
       </p>
 
       <p class="accent">
-        Full satisfaction can coexist with unequal provision.
+
+        Full satisfaction can coexist
+        with unequal provision.
+
       </p>
 
     </div>
@@ -1057,22 +1920,27 @@ td {
 </section>
 
 
-<!-- =====================================================
-     10. REPRESENTATION AND RANKING
-===================================================== -->
+<!-- 10 -->
 
-<section class="slide center" data-anchor="ranking">
+<section
+  class="slide center"
+  data-anchor="ranking">
 
   <div class="content">
 
     <h2 class="reveal">
-      Outcome representation and partial ranking
+
+      Outcome representation
+      and partial ranking
+
     </h2>
 
     <div class="body reveal d2">
 
       <p>
+
         Represent each outcome by:
+
       </p>
 
       <div class="formula">
@@ -1089,7 +1957,10 @@ td {
       </div>
 
       <p>
-        A minimal dominance rule ranks \(x\) above \(y\) if:
+
+        A minimal dominance rule
+        ranks \(x\) above \(y\) if:
+
       </p>
 
       <div class="formula">
@@ -1107,21 +1978,26 @@ td {
         \ge
         L_y^M(p)
         \quad
-        \text{for every }p,
+        \text{for every }p.
         \]
 
       </div>
 
       <p>
-        with strict inequality for at least one citizen
+
+        with strict inequality
+        for at least one citizen
         or one Lorenz point.
+
       </p>
 
       <div class="card-grid">
 
         <div class="card">
 
-          <h3>Absolute-first</h3>
+          <h3>
+            Absolute-first
+          </h3>
 
           <p>
             Prioritize claim satisfaction.
@@ -1129,9 +2005,12 @@ td {
 
         </div>
 
+
         <div class="card">
 
-          <h3>Comparative-first</h3>
+          <h3>
+            Comparative-first
+          </h3>
 
           <p>
             Prioritize proportionality.
@@ -1139,13 +2018,18 @@ td {
 
         </div>
 
+
         <div class="card">
 
-          <h3>Continuous aggregation</h3>
+          <h3>
+            Continuous aggregation
+          </h3>
 
           <p>
-            Specify trade-offs between the absolute
-            and comparative dimensions.
+
+            Specify trade-offs between
+            the absolute and comparative dimensions.
+
           </p>
 
         </div>
@@ -1159,20 +2043,25 @@ td {
 </section>
 
 
-<!-- =====================================================
-     11. END
-===================================================== -->
+<!-- 11 -->
 
-<section class="slide end-slide" data-anchor="end">
+<section
+  class="slide end-slide"
+  data-anchor="end">
 
   <div class="content reveal">
 
-    <h1>Thank you</h1>
+    <h1>
+      Thank you
+    </h1>
 
     <div class="large">
 
-      <a href="mailto:fanunezmichea@gmail.com">
+      <a
+        href="mailto:fanunezmichea@gmail.com">
+
         fanunezmichea@gmail.com
+
       </a>
 
     </div>
@@ -1182,9 +2071,7 @@ td {
 </section>
 
 
-<!-- =====================================================
-     APPENDIX: LORENZ EXAMPLES
-===================================================== -->
+<!-- APPENDIX -->
 
 <section
   class="slide lorenz-slide"
@@ -1192,20 +2079,19 @@ td {
 
   <div class="content">
 
+
     <div class="lorenz-header reveal">
 
-      <div>
-
-        <h2>
-          Reading the Lorenz curve
-        </h2>
-
-      </div>
+      <h2>
+        Reading the Lorenz curve
+      </h2>
 
       <a
         class="back-link"
         href="#proportionality">
+
         ← Back
+
       </a>
 
     </div>
@@ -1213,20 +2099,23 @@ td {
 
     <div class="lorenz-grid reveal d2">
 
-      <!-- ------------------------------
-           EXAMPLE 1
-      ------------------------------- -->
+
+      <!-- EXAMPLE 1 -->
 
       <div class="lorenz-example">
 
         <h3>
+
           1. Lorenz dominance
+
         </h3>
 
         <div class="description">
 
           Same total:
+
           \(A=(2,4,6,8)\),
+
           \(B=(1,3,5,11)\).
 
         </div>
@@ -1234,83 +2123,135 @@ td {
 
         <svg
           class="lorenz-graph"
-          viewBox="0 0 650 500"
-          aria-label="Lorenz curves comparing allocations A and B">
+          viewBox="0 0 650 500">
 
-          <!-- grid -->
+          <line
+            class="graph-grid"
+            x1="90"
+            y1="390"
+            x2="570"
+            y2="390"/>
 
-          <line class="graph-grid" x1="90" y1="390" x2="570" y2="390"/>
-          <line class="graph-grid" x1="90" y1="270" x2="570" y2="270"/>
-          <line class="graph-grid" x1="90" y1="150" x2="570" y2="150"/>
+          <line
+            class="graph-grid"
+            x1="90"
+            y1="270"
+            x2="570"
+            y2="270"/>
 
-          <line class="graph-grid" x1="210" y1="30" x2="210" y2="390"/>
-          <line class="graph-grid" x1="330" y1="30" x2="330" y2="390"/>
-          <line class="graph-grid" x1="450" y1="30" x2="450" y2="390"/>
+          <line
+            class="graph-grid"
+            x1="90"
+            y1="150"
+            x2="570"
+            y2="150"/>
 
-          <!-- axes -->
+          <line
+            class="graph-grid"
+            x1="210"
+            y1="30"
+            x2="210"
+            y2="390"/>
 
-          <line class="graph-axis" x1="90" y1="390" x2="580" y2="390"/>
-          <line class="graph-axis" x1="90" y1="400" x2="90" y2="24"/>
+          <line
+            class="graph-grid"
+            x1="330"
+            y1="30"
+            x2="330"
+            y2="390"/>
 
-          <!-- equality -->
+          <line
+            class="graph-grid"
+            x1="450"
+            y1="30"
+            x2="450"
+            y2="390"/>
+
+
+          <line
+            class="graph-axis"
+            x1="90"
+            y1="390"
+            x2="580"
+            y2="390"/>
+
+          <line
+            class="graph-axis"
+            x1="90"
+            y1="400"
+            x2="90"
+            y2="24"/>
+
 
           <path
             class="graph-equality"
-            d="M90 390 L570 30"/>
+            d="
+            M90 390
+            L570 30
+            "/>
 
-          <!-- A:
-               cumulative shares
-               0,.10,.30,.60,1
-          -->
 
           <path
             class="graph-a"
             d="
-              M90 390
-              L210 354
-              L330 282
-              L450 174
-              L570 30
+            M90 390
+            L210 354
+            L330 282
+            L450 174
+            L570 30
             "/>
 
-          <!-- B:
-               cumulative shares
-               0,.05,.20,.45,1
-          -->
 
           <path
             class="graph-b"
             d="
-              M90 390
-              L210 372
-              L330 318
-              L450 228
-              L570 30
+            M90 390
+            L210 372
+            L330 318
+            L450 228
+            L570 30
             "/>
 
-          <!-- labels -->
 
-          <text class="graph-label" x="578" y="405">1</text>
-          <text class="graph-label" x="72" y="37">1</text>
+          <text
+            class="graph-label"
+            x="470"
+            y="145">
 
-          <text class="graph-label graph-small" x="200" y="420">.25</text>
-          <text class="graph-label graph-small" x="319" y="420">.50</text>
-          <text class="graph-label graph-small" x="439" y="420">.75</text>
+            A
 
-          <text class="graph-label graph-small" x="42" y="278">.33</text>
-          <text class="graph-label graph-small" x="42" y="158">.67</text>
-
-          <text class="graph-label" x="470" y="145">A</text>
-          <text class="graph-label" x="470" y="220">B</text>
-
-          <text class="graph-label graph-small" x="278" y="468">
-            population share
           </text>
+
+
+          <text
+            class="graph-label"
+            x="470"
+            y="220">
+
+            B
+
+          </text>
+
 
           <text
             class="graph-label graph-small"
-            transform="translate(20,310) rotate(-90)">
+            x="270"
+            y="465">
+
+            population share
+
+          </text>
+
+
+          <text
+            class="graph-label graph-small"
+            transform="
+            translate(20,310)
+            rotate(-90)
+            ">
+
             cumulative share
+
           </text>
 
         </svg>
@@ -1318,8 +2259,9 @@ td {
 
         <div class="lorenz-note">
 
-          \(A\)'s curve lies everywhere weakly above \(B\)'s
-          and strictly above it somewhere.
+          \(A\)'s curve lies everywhere weakly above
+          \(B\)'s and strictly above it somewhere.
+
           Therefore \(A\) Lorenz-dominates \(B\).
 
         </div>
@@ -1327,59 +2269,87 @@ td {
       </div>
 
 
-      <!-- ------------------------------
-           EXAMPLE 2
-      ------------------------------- -->
+      <!-- EXAMPLE 2 -->
 
       <div class="lorenz-example">
 
         <h3>
+
           2. Why use uncapped satisfaction?
+
         </h3>
 
         <div class="description">
 
           Equal strengths:
+
           \(\sigma_1=\sigma_2=1/2\),
-          with \(x=(a,3a)\).
+
+          with
+
+          \(x=(a,3a)\).
 
         </div>
 
 
         <svg
           class="lorenz-graph"
-          viewBox="0 0 650 500"
-          aria-label="Lorenz curve for allocation a and 3a">
+          viewBox="0 0 650 500">
 
-          <!-- grid -->
 
-          <line class="graph-grid" x1="90" y1="390" x2="570" y2="390"/>
-          <line class="graph-grid" x1="90" y1="210" x2="570" y2="210"/>
+          <line
+            class="graph-grid"
+            x1="90"
+            y1="390"
+            x2="570"
+            y2="390"/>
 
-          <line class="graph-grid" x1="330" y1="30" x2="330" y2="390"/>
+          <line
+            class="graph-grid"
+            x1="90"
+            y1="210"
+            x2="570"
+            y2="210"/>
 
-          <!-- axes -->
+          <line
+            class="graph-grid"
+            x1="330"
+            y1="30"
+            x2="330"
+            y2="390"/>
 
-          <line class="graph-axis" x1="90" y1="390" x2="580" y2="390"/>
-          <line class="graph-axis" x1="90" y1="400" x2="90" y2="24"/>
 
-          <!-- equality -->
+          <line
+            class="graph-axis"
+            x1="90"
+            y1="390"
+            x2="580"
+            y2="390"/>
+
+          <line
+            class="graph-axis"
+            x1="90"
+            y1="400"
+            x2="90"
+            y2="24"/>
+
 
           <path
             class="graph-equality"
-            d="M90 390 L570 30"/>
+            d="
+            M90 390
+            L570 30
+            "/>
 
-          <!-- r = (2,6)
-               bottom-half share = 2/8 = .25
-          -->
 
           <path
             class="graph-single"
             d="
-              M90 390
-              L330 300
-              L570 30
+            M90 390
+            L330 300
+            L570 30
             "/>
+
 
           <circle
             class="graph-point-red"
@@ -1387,27 +2357,36 @@ td {
             cy="300"
             r="7"/>
 
-          <!-- labels -->
 
-          <text class="graph-label" x="578" y="405">1</text>
-          <text class="graph-label" x="72" y="37">1</text>
+          <text
+            class="graph-label"
+            x="350"
+            y="289">
 
-          <text class="graph-label graph-small" x="319" y="420">.50</text>
-
-          <text class="graph-label graph-small" x="46" y="307">.25</text>
-
-          <text class="graph-label" x="350" y="289">
             (.5, .25)
+
           </text>
 
-          <text class="graph-label graph-small" x="278" y="468">
-            population share
-          </text>
 
           <text
             class="graph-label graph-small"
-            transform="translate(20,310) rotate(-90)">
+            x="270"
+            y="465">
+
+            population share
+
+          </text>
+
+
+          <text
+            class="graph-label graph-small"
+            transform="
+            translate(20,310)
+            rotate(-90)
+            ">
+
             cumulative share
+
           </text>
 
         </svg>
@@ -1417,20 +2396,18 @@ td {
 
           Capped satisfaction gives
 
-          \[
-          \operatorname{Sat}(x)=(1,1),
-          \]
+          \(\operatorname{Sat}(x)=(1,1)\),
 
           but
 
-          \[
-          \operatorname{Mat}(x)=(1,3),
-          \qquad
-          r=(2,6).
-          \]
+          \(\operatorname{Mat}(x)=(1,3)\)
 
-          Full claim satisfaction therefore does not imply
-          comparative equality.
+          and
+
+          \(r=(2,6)\).
+
+          Full claim satisfaction therefore
+          does not imply comparative equality.
 
         </div>
 
@@ -1443,12 +2420,10 @@ td {
 </section>
 
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
 <div class="hint">
+
   ← → navigate · F fullscreen
+
 </div>
 
 <div
@@ -1460,6 +2435,7 @@ td {
   class="progress"
   id="progress">
 </div>
+
 
 </main>
 
@@ -1483,9 +2459,7 @@ const progress =
 let current = 0;
 
 
-/* -------------------------
-   FIT PRESENTATION
--------------------------- */
+/* FIT */
 
 function fit() {
 
@@ -1495,15 +2469,13 @@ function fit() {
       window.innerHeight / 1080
     );
 
-  stage..transform =
+  stage.style.transform =
     `translate(-50%, -50%) scale(${scale})`;
 
 }
 
 
-/* -------------------------
-   SLIDE INDEX
--------------------------- */
+/* ANCHOR LOOKUP */
 
 function anchorIndex(anchor) {
 
@@ -1515,11 +2487,12 @@ function anchorIndex(anchor) {
 }
 
 
-/* -------------------------
-   GO TO SLIDE
--------------------------- */
+/* NAVIGATION */
 
-function go(n, updateHash = true) {
+function go(
+  n,
+  updateHash = true
+) {
 
   current =
     Math.max(
@@ -1529,6 +2502,7 @@ function go(n, updateHash = true) {
         n
       )
     );
+
 
   slides.forEach(
     (slide, i) => {
@@ -1541,19 +2515,18 @@ function go(n, updateHash = true) {
     }
   );
 
-  /*
-    Appendix slide is not counted as part
-    of the main argument.
-  */
 
   const mainSlides =
     slides.filter(
       slide =>
-        slide.dataset.anchor !== "lorenz-examples"
+        slide.dataset.anchor !==
+        "lorenz-examples"
     );
+
 
   const activeSlide =
     slides[current];
+
 
   if (
     activeSlide.dataset.anchor ===
@@ -1573,19 +2546,31 @@ function go(n, updateHash = true) {
       );
 
     counter.textContent =
-      String(mainIndex + 1).padStart(2,"0")
+      String(
+        mainIndex + 1
+      ).padStart(
+        2,
+        "0"
+      )
       +
       " / "
       +
-      String(mainSlides.length).padStart(2,"0");
+      String(
+        mainSlides.length
+      ).padStart(
+        2,
+        "0"
+      );
 
   }
 
 
-  progress..width =
+  progress.style.width =
     (
-      (current + 1) /
-      slides.length *
+      (current + 1)
+      /
+      slides.length
+      *
       100
     )
     +
@@ -1594,13 +2579,14 @@ function go(n, updateHash = true) {
 
   if (updateHash) {
 
-    const anchor =
-      slides[current].dataset.anchor;
-
     history.replaceState(
       null,
       "",
-      "#" + anchor
+      "#"
+      +
+      slides[current]
+        .dataset
+        .anchor
     );
 
   }
@@ -1608,9 +2594,7 @@ function go(n, updateHash = true) {
 }
 
 
-/* -------------------------
-   HASH NAVIGATION
--------------------------- */
+/* HASH */
 
 function fromHash() {
 
@@ -1619,29 +2603,41 @@ function fromHash() {
       location.hash.slice(1)
     );
 
+
   if (!hash) {
 
-    go(0, false);
+    go(
+      0,
+      false
+    );
+
     return;
 
   }
+
 
   const named =
     anchorIndex(hash);
 
+
   if (named >= 0) {
 
-    go(named, false);
+    go(
+      named,
+      false
+    );
+
     return;
 
   }
 
-  /*
-    Numeric hashes also continue to work.
-  */
 
   const numeric =
-    parseInt(hash, 10);
+    parseInt(
+      hash,
+      10
+    );
+
 
   if (
     Number.isFinite(numeric)
@@ -1666,9 +2662,7 @@ function fromHash() {
 }
 
 
-/* -------------------------
-   EVENTS
--------------------------- */
+/* EVENTS */
 
 window.addEventListener(
   "resize",
@@ -1685,9 +2679,12 @@ document.addEventListener(
   "keydown",
   event => {
 
+
     if (
-      event.key === "ArrowRight" ||
-      event.key === "PageDown" ||
+      event.key === "ArrowRight"
+      ||
+      event.key === "PageDown"
+      ||
       event.key === " "
     ) {
 
@@ -1699,8 +2696,10 @@ document.addEventListener(
 
     }
 
+
     else if (
-      event.key === "ArrowLeft" ||
+      event.key === "ArrowLeft"
+      ||
       event.key === "PageUp"
     ) {
 
@@ -1712,6 +2711,7 @@ document.addEventListener(
 
     }
 
+
     else if (
       event.key === "Home"
     ) {
@@ -1719,6 +2719,7 @@ document.addEventListener(
       go(0);
 
     }
+
 
     else if (
       event.key === "End"
@@ -1730,8 +2731,12 @@ document.addEventListener(
 
     }
 
+
     else if (
-      event.key.toLowerCase() === "f"
+      event.key
+        .toLowerCase()
+      ===
+      "f"
     ) {
 
       document
@@ -1741,28 +2746,29 @@ document.addEventListener(
     }
 
   }
+
 );
 
 
-/*
-  Clicking the right or left side
-  of the presentation also navigates.
-
-  Links remain clickable.
-*/
+/* CLICK NAVIGATION */
 
 document.addEventListener(
   "click",
   event => {
 
+
     if (
       event.target.closest("a")
     ) {
+
       return;
+
     }
 
+
     if (
-      event.clientX >
+      event.clientX
+      >
       window.innerWidth * .58
     ) {
 
@@ -1772,8 +2778,10 @@ document.addEventListener(
 
     }
 
+
     else if (
-      event.clientX <
+      event.clientX
+      <
       window.innerWidth * .42
     ) {
 
@@ -1784,17 +2792,18 @@ document.addEventListener(
     }
 
   }
+
 );
 
 
-/* -------------------------
-   INITIALISE
--------------------------- */
+/* INITIALISE */
 
 fit();
+
 fromHash();
 
 </script>
+
 
 </body>
 </html>
