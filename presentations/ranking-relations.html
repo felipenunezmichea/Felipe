@@ -117,7 +117,22 @@ body {
   z-index: 2;
   height: 100%;
 }
+.two-column {
+  display: grid;
+  grid-template-columns: .98fr 1.02fr;
+  gap: 58px;
+  align-items: center;
+}
 
+.communicating-vessels {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  max-height: 590px;
+  object-fit: contain;
+  margin: 0 auto;
+  mix-blend-mode: multiply;
+}
 /* -------------------------
    TYPOGRAPHY
 -------------------------- */
@@ -736,9 +751,9 @@ td {
       <div class="reveal">
 
         <img
-          src="assets/connected-vessels.png"
-          alt="Connected vessels illustrating comparative and absolute dimensions of civic status"
-          class="connected-vessels">
+          src="assets/communicating-vessels.gif"
+          alt="Animated communicating vessels"
+          class="communicating-vessels">
 
       </div>
 
@@ -1480,7 +1495,7 @@ function fit() {
       window.innerHeight / 1080
     );
 
-  stage.style.transform =
+  stage..transform =
     `translate(-50%, -50%) scale(${scale})`;
 
 }
@@ -1567,7 +1582,7 @@ function go(n, updateHash = true) {
   }
 
 
-  progress.style.width =
+  progress..width =
     (
       (current + 1) /
       slides.length *
